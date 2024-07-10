@@ -80,7 +80,7 @@
         </div>
         <!--HOME PAGE-->
     <div id="Home">
-        <div class="welcome">
+        <div class="header">
             <h2>Welcome back php</h2>
         </div>
         
@@ -124,7 +124,48 @@
             </div>
         </div>
     </div>
-
+    <!--Maintenace-->
+    <div id="Maintenance">
+        <div class="header">
+            <h2>Maintenance</h2>
+        </div>
+        <div class="info">
+            <form action="" method="post">
+                <div class="labels">
+                    <label>Ref :</label><br>
+                    <input type="text" placeholder="Ref" id="input-field"><br>
+                </div>
+                <div class="labels">
+                    <label>Date :</label><br>
+                    <input type="date" name="Date" id="input-field"><br>
+                </div>
+                <div class="labels">
+                    <label >Division/Service :</label><br>
+                    <input type="text" placeholder="DivSer" id="input-field"><br>
+                </div>
+                <!--<div class="labels">
+                    <label>Work :</label>
+                    <div id="Work">
+                        <input type="radio" name="Work" value="WorkCompleted" ><label>Completed</label>
+                        <input type="radio" name="Work" value="WorkProgress" ><label>in Progress</label><br>
+                </div>-->
+                </div>
+                <div class="labels">
+                    <label >Type :</label><br>
+                    <div id="radio">
+                        <input type="radio" name="type" value="Software" ><label>Software</label><br>
+                        <input type="radio" name="type" value="Hardware" ><label>Hardware</label><br>
+                        <input type="radio" name="type"  value="Network" ><label>Network</label><br>
+                    </div>
+                </div>
+                <div class="labels">
+                    <label>Upload the Rapport :</label><br>
+                    <input type="file" name="rapport"><br>
+                </div>
+                <input type="button" value="Submit">
+            </form>
+        </div>
+    </div>
 
 
     </div>
@@ -159,6 +200,7 @@
 
     <!-- =========== Scripts =========  -->
     <script>
+        
         // add hovered class to selected list item
 let list = document.querySelectorAll(".navigation li");
 

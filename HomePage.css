@@ -208,95 +208,75 @@ body {
 
 
 /*------------------------------------------------------------Maintenance-----------------------------------------------*/
+
 #Maintenance {
-  /*display: none;*/
-  position: absolute;
+  position: relative;
   width: calc(100% - 300px);
   left: 300px;
   min-height: 100vh;
-  background: var(--white);
+  background: #f2f2f2;
   transition: 0.5s;
-}
-#Maintenance.active 
-{
-  width: calc(100% - 80px);
-  left: 80px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .info {
-  font-size: 30px;
-  min-height: calc(100vh - 60px);
+  padding-top: 40px;
+  font-size: 18px;
   position: relative;
-  padding-left: 170px;
-  padding-top: 50px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
 }
 
-#input-field
-{
+.labels {
+
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.labels label {
+  width: 120px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"] {
   width: 100%;
-  height: 60px;
-  font-size: 17px;
-  padding: 0 25px;
-  margin-bottom: 15px;
-  border-radius: 30px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: #5c7cfa;
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #5c7cfa;
+  color: white;
+  font-size: 18px;
   border: none;
-  box-shadow: 0px 5px 10px 1px rgba(0,0,0, 0.05);
-  transition: 0.3s;
-}
-::placeholder{
-  font-weight: 500;
-  color: #222;
-}
-#radio
-{
-  padding-top: 20px;
-  padding-left: 30px;
-  
-}
-input[type="radio"]
-{
-  width: 50px;
-  height: 20px;
-}
-.input-field:focus{
-  width: 105%;
-}
-label
-{
-  padding-left: 15px;
-}
-.labels
-{
-  padding-bottom: 15px;
-}
-input[type="file"]
-{
-  margin-top: 20px;
-  transform: scale(1.5);
-  padding-left: 160px;
-}
-input[type="button"]
-{
-  margin-top: 30px;
-  margin-left: px;
-  margin-bottom: 30px;
-  width: 100%;
-  height: 60px;
-    background: #222;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .3s;
-    color: var(--gray);
-    font-size: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
-input[type="button"]:hover
-{
-  
-    background: #000;
-    transform: scale(1.05,1);
+.submit-button:hover {
+  background-color: #4562c0;
 }
+
+

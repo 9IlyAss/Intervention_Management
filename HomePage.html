@@ -10,21 +10,23 @@
 </head>
 
 <body>
-    <!-- =============== Navigation ================ -->
+<!--==================================================+++++++==================================================
+    ==================================================  Navigation  ==================================================
+    ==================================================+++++++==================================================-->
     <div class="container">
         <div class="navigation">
             <ul>
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <img class="logoBSRI"src="BSRIQZ-01.png">
+                            <img class="logoBSRI" src="BSRIQZ-01.png">
                         </span>
                         <span class="title">Intervention Managment</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#Home">
+                    <a href="#Home" class="Home">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -33,7 +35,7 @@
                 </li>
 
                 <li>
-                    <a href="#Maintenance">
+                    <a href="#Maintenance" class="Maintenance">
                         <span class="icon">
                             <ion-icon name="construct-outline"></ion-icon>
                         </span>
@@ -42,7 +44,7 @@
                 </li>
 
                 <li>
-                    <a href="#Security">
+                    <a href="#Security" class="Security">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
@@ -51,7 +53,7 @@
                 </li>
 
                 <li>
-                    <a href="#Support">
+                    <a href="#Support" class="Support">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
@@ -60,7 +62,7 @@
                 </li>
 
                 <li>
-                    <a href="#Analysic">
+                    <a href="#Analysic" class="Analysic">
                         <span class="icon">
                             <ion-icon name="bar-chart-outline"></ion-icon>
                         </span>
@@ -78,141 +80,153 @@
                 </li>
             </ul>
         </div>
-        <!--HOME PAGE-->
-    <div id="Home">
-        <div class="header">
-            <h2>Welcome back php</h2>
-        </div>
-        
-        <div class="details">
-            <div class="recentOrders">
-                <div class="cardHeader">
-                    <h2>Recent Intervention</h2>
+<!--==================================================+++++++==================================================
+    ==================================================  HOME  ==================================================
+    ==================================================+++++++==================================================-->
+        <div id="Home" class="content">
+            <div class="header">
+                <h2>Welcome back php</h2>
+            </div>
+
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Intervention</h2>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Price</td>
+                                <td>Payment</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Apple Watch</td>
+                                <td>$1200</td>
+                                <td>Paid</td>
+                                <td><span class="status return">Return</span></td>
+                            </tr>
+                            <tr>
+                                <td>Apple Watch</td>
+                                <td>$1200</td>
+                                <td>Paid</td>
+                                <td><span class="status return">Return</span></td>
+                            </tr>
+                            <tr>
+                                <td>Apple Watch</td>
+                                <td>$1200</td>
+                                <td>Paid</td>
+                                <td><span class="status return">Return</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>Price</td>
-                            <td>Payment</td>
-                            <td>Status</td>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
-    </div>
-    <!--Maintenace-->
-    <div id="Maintenance">
+<!--=================================================+++++++++++==================================================
+    ================================================ Maintenace ===================================================
+    =================================================+++++++++++==================================================-->
+    <div id="Maintenance" class="content">
         <div class="header">
             <h2>Maintenance</h2>
         </div>
         <div class="info">
             <form action="" method="post">
-                <div class="labels">
-                    <label>Ref :</label><br>
-                    <input type="text" placeholder="Ref" id="input-field"><br>
-                </div>
-                <div class="labels">
-                    <label>Date :</label><br>
-                    <input type="date" name="Date" id="input-field"><br>
-                </div>
-                <div class="labels">
-                    <label >Division/Service :</label><br>
-                    <input type="text" placeholder="DivSer" id="input-field"><br>
-                </div>
-                <!--<div class="labels">
-                    <label>Work :</label>
-                    <div id="Work">
-                        <input type="radio" name="Work" value="WorkCompleted" ><label>Completed</label>
-                        <input type="radio" name="Work" value="WorkProgress" ><label>in Progress</label><br>
+                <div class="form-row">
+                    <div class="labels">
+                        <label for="refInput">Ref :</label>
+                        <input type="text" id="refInput" placeholder="Placeholder for Ref">
                     </div>
-                </div>-->
-                <div class="labels">
-                    <label >Type :</label><br>
-                    <div id="radio">
-                        <input type="radio" name="type" value="Software" ><label>Software</label><br>
-                        <input type="radio" name="type" value="Hardware" ><label>Hardware</label><br>
-                        <input type="radio" name="type"  value="Network" ><label>Network</label><br>
+                    <div class="labels">
+                        <label for="divSerInput">Div/Ser :</label>
+                        <input type="text" id="divSerInput" placeholder="Placeholder for Div/Ser">
                     </div>
                 </div>
-                <div class="labels">
-                    <label>Upload the Rapport :</label><br>
-                    <input type="file" name="rapport"><br>
+                <div class="form-row">
+                    <div class="labels">
+                        <label for="dateInput">Date :</label>
+                        <input type="date" id="dateInput" name="Date">
+                    </div>
                 </div>
-                <input type="button" value="Submit">
+                <div class="form-row">
+                    <div class="labels">
+                        <label>Work :</label>
+                        <div id="Work">
+                            <input type="radio" name="Work" id="completedRadio" value="WorkCompleted">
+                            <label for="completedRadio">Completed</label>
+                            <input type="radio" name="Work" id="progressRadio" value="WorkProgress">
+                            <label for="progressRadio">In Progress</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="labels">
+                        <label>Type :</label>
+                        <div id="radio">
+                            <input type="radio" name="type" id="softwareRadio" value="Software">
+                            <label for="softwareRadio">Software</label>
+                            <input type="radio" name="type" id="hardwareRadio" value="Hardware">
+                            <label for="hardwareRadio">Hardware</label>
+                            <input type="radio" name="type" id="networkRadio" value="Network">
+                            <label for="networkRadio">Network</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="labels">
+                        <label for="rapportInput">Upload the Rapport :</label>
+                        <input type="file" id="rapportInput" name="rapport">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <input type="button" value="Submit" class="submit-button">
+                </div>
             </form>
         </div>
     </div>
+    
+<!--==================================================+++++++==================================================
+    ==================================================  Security  ==================================================
+    ==================================================+++++++==================================================-->
+        <div id="Security" class="content">
+
+        </div>
+<!--==================================================+++++++==================================================
+    ==================================================  Support  ==================================================
+    ==================================================+++++++==================================================-->
+        <div id="Support" class="content">
+
+        </div>
+<!--==================================================+++++++==================================================
+    ==================================================  Analysic  ==================================================
+    ==================================================+++++++==================================================-->
+        <div id="Analysic" class="content">
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- =========== Scripts =========  -->
-    <script>
-        
-        // add hovered class to selected list item
-let list = document.querySelectorAll(".navigation li");
-
-function activeLink() {
-list.forEach((item) => {
-    item.classList.remove("hovered");
-  });
-  this.classList.add("hovered");
-}
-
-list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
+    <script src="HomePage.js">
     </script>
 
     <!-- hada Ionic Framework -->

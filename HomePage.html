@@ -140,11 +140,11 @@
                 <div class="form-row">
                     <div class="labels">
                         <label for="refInput">Ref :</label>
-                        <input type="text" id="refInput" placeholder="Placeholder for Ref">
+                        <input type="text" id="refInput" placeholder="...">
                     </div>
                     <div class="labels">
                         <label for="divSerInput">Div/Ser :</label>
-                        <input type="text" id="divSerInput" placeholder="Placeholder for Div/Ser">
+                        <input type="text" id="divSerInput" placeholder="...">
                     </div>
                 </div>
                 <div class="form-row">
@@ -157,10 +157,10 @@
                     <div class="labels">
                         <label>Work :</label>
                         <div id="Work">
-                            <input type="radio" name="Work" id="completedRadio" value="WorkCompleted">
+                            <input type="radio" name="Work" id="completedRadio" value="WorkCompleted" onclick="done()">
                             <label for="completedRadio">Completed</label>
-                            <input type="radio" name="Work" id="progressRadio" value="WorkProgress">
-                            <label for="progressRadio">In Progress</label>
+                            <input type="radio" name="Work" id="progressRadio" value="WorkProgress" onclick="inprogress()">
+                            <label for="progressRadio" id="Progresslabel">In Progress</label>
                         </div>
                     </div>
                 </div>
@@ -194,19 +194,184 @@
     ==================================================  Security  ==================================================
     ==================================================+++++++==================================================-->
         <div id="Security" class="content">
-
+            <div class="header">
+                <h2>Security</h2>
+            </div>
+            <div class="info">
+                <form action="" method="post">
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="refInput">Ref :</label>
+                            <input type="text" id="refInput" placeholder="...">
+                        </div>
+                        <div class="labels">
+                            <label for="divSerInput">Div/Ser :</label>
+                            <input type="text" id="divSerInput" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="dateInput">Date :</label>
+                            <input type="date" id="dateInput" name="Date">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label>Work :</label>
+                            <div id="Work">
+                                <input type="radio" name="Work" id="completedRadio" value="WorkCompleted" onclick="done()">
+                                <label for="completedRadio">Completed</label>
+                                <input type="radio" name="Work" id="progressRadio" value="WorkProgress" onclick="inprogress()">
+                                <label for="progressRadio" id="Progresslabel">In Progress</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label>Type :</label>
+                            <div id="radio">
+                                <input type="radio" name="type" id="softwareRadio" value="Software">
+                                <label for="softwareRadio">Software</label>
+                                <input type="radio" name="type" id="hardwareRadio" value="Hardware">
+                                <label for="hardwareRadio">Hardware</label>
+                                <input type="radio" name="type" id="networkRadio" value="Network">
+                                <label for="networkRadio">Network</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="rapportInput">Upload the Rapport :</label>
+                            <input type="file" id="rapportInput" name="rapport">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <input type="button" value="Submit" class="submit-button">
+                    </div>
+                </form>
+            </div>
         </div>
 <!--==================================================+++++++==================================================
     ==================================================  Support  ==================================================
     ==================================================+++++++==================================================-->
         <div id="Support" class="content">
-
+            <div class="header">
+                <h2>Support</h2>
+            </div>
+            <div class="info">
+                <form action="" method="post">
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="refInput">Ref :</label>
+                            <input type="text" id="refInput" placeholder="...">
+                        </div>
+                        <div class="labels">
+                            <label for="divSerInput">Div/Ser :</label>
+                            <input type="text" id="divSerInput" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="dateInput">Date :</label>
+                            <input type="date" id="dateInput" name="Date">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label>Work :</label>
+                            <div id="Work">
+                                <input type="radio" name="Work" id="completedRadio" value="WorkCompleted" onclick="done()">
+                                <label for="completedRadio">Completed</label>
+                                <input type="radio" name="Work" id="progressRadio" value="WorkProgress" onclick="inprogress()">
+                                <label for="progressRadio" id="Progresslabel">In Progress</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label>Type :</label>
+                            <div id="radio">
+                                <input type="radio" name="type" id="softwareRadio" value="Software">
+                                <label for="softwareRadio">Software</label>
+                                <input type="radio" name="type" id="hardwareRadio" value="Hardware">
+                                <label for="hardwareRadio">Hardware</label>
+                                <input type="radio" name="type" id="networkRadio" value="Network">
+                                <label for="networkRadio">Network</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="rapportInput">Upload the Rapport :</label>
+                            <input type="file" id="rapportInput" name="rapport">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <input type="button" value="Submit" class="submit-button">
+                    </div>
+                </form>
+            </div>
         </div>
 <!--==================================================+++++++==================================================
     ==================================================  Analysic  ==================================================
     ==================================================+++++++==================================================-->
         <div id="Analysic" class="content">
-
+            <div class="header">
+                <h2>Analysic</h2>
+            </div>
+            <div class="info">
+                <form action="" method="post">
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="refInput">Ref :</label>
+                            <input type="text" id="refInput" placeholder="...">
+                        </div>
+                        <div class="labels">
+                            <label for="divSerInput">Div/Ser :</label>
+                            <input type="text" id="divSerInput" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="dateInput">Date :</label>
+                            <input type="date" id="dateInput" name="Date">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label>Work :</label>
+                            <div id="Work">
+                                <input type="radio" name="Work" id="completedRadio" value="WorkCompleted" onclick="done()">
+                                <label for="completedRadio">Completed</label>
+                                <input type="radio" name="Work" id="progressRadio" value="WorkProgress" onclick="inprogress()">
+                                <label for="progressRadio" id="Progresslabel">In Progress</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label>Type :</label>
+                            <div id="radio">
+                                <input type="radio" name="type" id="softwareRadio" value="Software">
+                                <label for="softwareRadio">Software</label>
+                                <input type="radio" name="type" id="hardwareRadio" value="Hardware">
+                                <label for="hardwareRadio">Hardware</label>
+                                <input type="radio" name="type" id="networkRadio" value="Network">
+                                <label for="networkRadio">Network</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="labels">
+                            <label for="rapportInput">Upload the Rapport :</label>
+                            <input type="text" id="rapportInput" name="rapport">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <input type="button" value="Submit" class="submit-button">
+                    </div>
+                </form>
+            </div>
         </div>
 
 

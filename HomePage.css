@@ -209,7 +209,7 @@ body {
 
 /*------------------------------------------------------------Maintenance-----------------------------------------------*/
 
-#Maintenance {
+#Maintenance , #Security , #Support , #Analysic {
   position: relative;
   width: calc(100% - 300px);
   left: 300px;
@@ -253,7 +253,8 @@ input[type="file"] {
 
 input[type="text"]:focus,
 input[type="date"]:focus,
-input[type="file"]:focus {
+input[type="file"]:focus,
+textarea:focus {
   outline: none;
   border-color: #5c7cfa;
 }
@@ -279,4 +280,12 @@ input[type="file"]:focus {
   background-color: #4562c0;
 }
 
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
 

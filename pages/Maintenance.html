@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="Maintenance" class="content">
+        <div class="header">
+            <h2>Maintenance</h2>
+        </div>
+        <div class="info">
+            <form action="" method="post">
+                <input type="hidden" name="form_type" value="Maintenance">
+                <div class="form-row">
+                    <div class="labels">
+                        <label for="refInput">Ref :</label>
+                        <input type="text" id="refInput" placeholder="...">
+                    </div>
+                    <div class="labels">
+                        <label for="divSerInput">Div/Ser :</label>
+                        <input type="text" id="divSerInput" placeholder="...">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="labels">
+                        <label for="dateInput">Date :</label>
+                        <input type="date" id="dateInput" name="Date">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="labels">
+                        <label>Work :</label>
+                        <div id="Work">
+                            <input type="radio" name="Work" id="completedRadio" value="WorkCompleted" onclick="done()">
+                            <label for="completedRadio">Completed</label>
+                            <input type="radio" name="Work" id="progressRadio" value="WorkProgress" onclick="inprogress()">
+                            <label for="progressRadio" id="Progresslabel">In Progress</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="labels">
+                        <label>Type :</label>
+                        <div id="radio">
+                            <input type="radio" name="type" id="softwareRadio" value="Software">
+                            <label for="softwareRadio">Software</label>
+                            <input type="radio" name="type" id="hardwareRadio" value="Hardware">
+                            <label for="hardwareRadio">Hardware</label>
+                            <input type="radio" name="type" id="networkRadio" value="Network">
+                            <label for="networkRadio">Network</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="labels">
+                        <label for="rapportInput">Upload the Rapport :</label>
+                        <input type="file" id="rapportInput" name="rapport">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <input type="button" value="SubmitMaintenace" class="submit-button">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../index.js"></script>
+
+</body>
+</html>

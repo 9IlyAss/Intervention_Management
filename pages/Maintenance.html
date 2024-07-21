@@ -1,44 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <style>
+        .header,
+        .header h2 {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-size: 60px;
+        }
+
+        .container {
+            background-color: rgb(255, 0, 0);
+        }
+        .form-floating
+        {
+             width: 400px;
+        }
+    </style>
 </head>
+
 <body>
-    <div id="Maintenance" class="content">
-        <div class="header">
+    <div id="Maintenance">
+        <div class="header text-center .d-{flex} text-light">
             <h2>Maintenance</h2>
         </div>
-        <div class="info">
+
+        <div class="container">
             <form action="" method="post">
                 <input type="hidden" name="form_type" value="Maintenance">
-                <div class="form-row">
-                    <div class="labels">
+                <div class="row ">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                          </div>
                         <label for="refInput">Ref :</label>
                         <input type="text" id="refInput" placeholder="...">
                     </div>
-                    <div class="labels">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                          </div>
                         <label for="divSerInput">Div/Ser :</label>
                         <input type="text" id="divSerInput" placeholder="...">
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="labels">
+                <div class="row">
+                    <div class="col align-self-center">
                         <label for="dateInput">Date :</label>
                         <input type="date" id="dateInput" name="Date">
                     </div>
                 </div>
+
+
+
                 <div class="form-row">
                     <div class="labels">
                         <label>Work :</label>
-                        <div id="Work">
-                            <input type="radio" name="Work" id="completedRadio" value="WorkCompleted" onclick="done()">
-                            <label for="completedRadio">Completed</label>
-                            <input type="radio" name="Work" id="progressRadio" value="WorkProgress" onclick="inprogress()">
-                            <label for="progressRadio" id="Progresslabel">In Progress</label>
+
+                        <input type="radio" class="btn-check" name="Work" id="completedRadio" value="WorkCompleted"
+                            onclick="done()" checked>
+                        <label class="btn btn-outline-success" for="completedRadio">Completed</label>
+
+                        <input type="radio" class="btn-check" name="Work" id="progressRadio" value="WorkProgress"
+                            onclick="inprogress()">
+                        <label class="btn btn-outline-primary" for="progressRadio">In Progress</label>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Comments</label>
                         </div>
+
                     </div>
                 </div>
                 <div class="form-row">
@@ -56,6 +94,10 @@
                 </div>
                 <div class="form-row">
                     <div class="labels">
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="inputGroupFile02">
+                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        </div>
                         <label for="rapportInput">Upload the Rapport :</label>
                         <input type="file" id="rapportInput" name="rapport">
                     </div>
@@ -69,4 +111,5 @@
     <script src="../index.js"></script>
 
 </body>
+
 </html>

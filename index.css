@@ -16,6 +16,7 @@ body {
   padding-top: 15px; /* Top padding */
   display: flex;
   flex-direction: column;
+  
 }
 
 .sidebar a {
@@ -42,10 +43,13 @@ body {
 
 .title {
   font-size: 1.5rem; /* Larger title font size */
+  padding-left:15px;
 }
 
 .icon-lg {
-  font-size: 1.5rem; /* Larger icon size */
+  font-size: 1.5rem; 
+  padding-left: 10px;/* Larger icon size */
+  padding-right: 5px;
 }
 
 /* Position Sign Out link at the bottom */

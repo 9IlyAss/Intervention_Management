@@ -66,9 +66,9 @@
 
             <!-- Main Content -->
             <div class="col-md-9 content">
-                <!--<?php
-                include 'pages/home.html';
-                ?>-->
+                <?php
+                include 'pages/Maintenance.html';
+                ?>
             </div>
         </div>
     </div>

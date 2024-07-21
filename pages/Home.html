@@ -1,29 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="Style.css">
 </head>
-<body>
-    <div id="Home" class="content">
-        <div class="header">
-            <h2>Welcome back </h2>
-        </div>
-        
-        <div class="details">
-            <div class="recentOrders">
-                <div class="cardHeader">
-                    <h2>Recent Intervention</h2>
-                </div>
 
-                <table>
+<body>
+    <!--============================================ CSS ==============================================================
+    ==============================================================================================================-->
+    <style>
+        .header {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            
+        }
+
+        /* ======================= Cards ====================== */
+        .card {
+            flex-direction: row;
+            border-radius: 40px 40px 40px 40px;
+        }
+
+        .iconBox {
+            margin: 10px 10px 10px 10px;
+            padding: 15px 8px 0px 12px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: aliceblue;
+        }
+
+        .card-icon {
+            font-size: 50px;
+        }
+
+        .card-subtitle {
+
+            padding-left: 10px;
+            font-weight: bold;
+        }
+
+        /*============================================table=============================================*/
+
+        
+
+
+
+        .Recentintervention {
+            margin-top: 40px;
+            
+        }
+
+        .table {
+            border-radius: 10px;
+        }
+
+        .conntainer {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .table {
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .table th,.table td {
+            padding: 16px;
+        }
+    </style>
+
+    <!--============================================ HTML ==============================================================
+    ==============================================================================================================-->
+
+
+    <div id="Home" class="container">
+        <div class="header text-center .d-{flex} text-light">
+            <h1>Welcome back</h1>
+        </div>
+
+
+        <!-- ======================================== Cards ===========================================================
+    =========================================================================================================== -->
+
+        <div class="row justify-content-around">
+            <div class="card col-md-5 bg-primary" style="width: 20rem;">
+                <div class="iconBox">
+                    <ion-icon name="receipt-outline" class="card-icon"></ion-icon>
+                </div>
+                <div class="card-body text-light">
+                    <h4 class="card-title">Interventions</h4>
+                    <h2 class="card-subtitle">45</h2>
+                </div>
+            </div>
+
+            <div class="card col-md-5 bg-danger" style="width: 19rem;">
+                <div class="iconBox ">
+                    <ion-icon name="people-outline" class="card-icon"></ion-icon>
+                </div>
+                <div class="card-body text-light">
+                    <h4 class="card-title">Accounts</h4>
+                    <h2 class="card-subtitle">45</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ======================================== Tabel ===========================================================
+    =========================================================================================================== -->
+        <div class="Recentintervention">
+            <div class="tableheader">
+                <h2>Recent Intervention</h2>
+            </div>
+            <div>
+                <table class="table table-hover ">
                     <thead>
                         <tr>
                             <td>Name</td>
-                            <td>Price</td>
-                            <td>Payment</td>
+                            <td>Office</td>
+                            <td>N.V</td>
+                            <td>Div/Ser</td>
                             <td>Status</td>
                         </tr>
                     </thead>
@@ -33,11 +132,6 @@
                             <td>Apple Watch</td>
                             <td>$1200</td>
                             <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
                             <td>Paid</td>
                             <td><span class="status return">Return</span></td>
                         </tr>
@@ -45,13 +139,43 @@
                             <td>Apple Watch</td>
                             <td>$1200</td>
                             <td>Paid</td>
+                            <td>Paid</td>
                             <td><span class="status return">Return</span></td>
                         </tr>
+                        <tr>
+                            <td>Apple Watch</td>
+                            <td>$1200</td>
+                            <td>Paid</td>
+                            <td>Paid</td>
+                            <td><span class="status return">Return</span></td>
+                        </tr>
+                        <tr>
+                            <td>Apple Watch</td>
+                            <td>$1200</td>
+                            <td>Paid</td>
+                            <td>Paid</td>
+                            <td><span class="status return">Return</span></td>
+                        </tr>
+                        <tr>
+                            <td>Apple Watch</td>
+                            <td>$1200</td>
+                            <td>Paid</td>
+                            <td>Paid</td>
+                            <td><span class="status return">Return</span></td>
+                        </tr>
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <script src="../index.js"></script>
+    </div>
+    <!--============================================ JS ==============================================================
+    ==============================================================================================================-->
+
+    <script src="../index.js">
+
+    </script>
 </body>
+
 </html>

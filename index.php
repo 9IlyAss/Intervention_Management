@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar Menu</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -13,7 +14,7 @@
 
     <div class="container-fluid">
         <div class="row">
-
+        
             <div class="col-md-3 sidebar">
 
                 <div class="d-flex align-items-center justify-content-between mb-4">
@@ -67,7 +68,7 @@
             <!-- Main Content -->
             <div class="col-md-9 content">
                 <?php
-                include 'pages/Maintenance.html';
+                include 'pages/Analysis.html';
                 ?>
             </div>
         </div>

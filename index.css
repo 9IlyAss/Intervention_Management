@@ -4,19 +4,25 @@
 
 
 body {
-  font-family: Arial, sans-serif;
+
+  font-family: 'Roboto', sans-serif;
   background-color: #01041d; /* Dark background */
   color: #dbe1fe; /* Light text */
 }
 
 .sidebar {
+  
   height: 100vh; /* Full height sidebar */
   background-color: #9e0451; /* Sidebar background */
   color: #dbe1fe; /* Text color */
   padding-top: 15px; /* Top padding */
   display: flex;
   flex-direction: column;
-  
+  position: fixed; /* Fixes the sidebar in place */
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Allows scrolling within the sidebar if content overflows */
+    z-index: 1000;
 }
 
 .sidebar a {
@@ -33,6 +39,7 @@ body {
 
 .content {
   padding: 20px; /* Padding for content */
+  margin-left: 335px; 
 }
 
 .logoBSRI {

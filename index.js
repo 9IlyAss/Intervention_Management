@@ -15,27 +15,42 @@ $(document).ready(function()
   //============================================================
         //display
     
-  let navlinks=document.querySelectorAll(".navigation a");
-  let content =document.querySelectorAll(".content");
-  function navigation()
-  {
+  // let navlinks=document.querySelectorAll(".navigation a");
+  // let content =document.querySelectorAll(".content");
+  // function navigation()
+  // {
     
-    navlinks.forEach((link)=>
-      {
-        link.addEventListener("click",()=> 
-          {
-            let item=link.getAttribute('href').substring(1);
-            content.forEach((element)=>
-              {
-                element.style.display="none";
-              });
-              document.getElementById(item).style.display="block";
-          });
+  //   navlinks.forEach((link)=>
+  //     {
+  //       link.addEventListener("click",()=> 
+  //         {
+  //           let item=link.getAttribute('href').substring(1);
+  //           content.forEach((element)=>
+  //             {
+  //               element.style.display="none";
+  //             });
+  //             document.getElementById(item).style.display="block";
+  //         });
           
-      });
-  }
-  navigation();
-  
+  //     });
+  // }
+  // navigation();
+  //=================================================================
+  // let navlinks=$(".sidebar a");
+  // let content =$(".title");
+  // function navigation()
+  // {
+  //   navlinks.each((link)=>
+  //     {
+  //       link.click(()=>
+  //       {
+  //         var attr=link.attr('href').substring(1);
+  //         $("content").empty().append("<?php include 'pages/${attr}.html';?>");
+  //       })
+  //     }
+  //   )
+  // }
+  // navigation();
   //===================================================================
       // in progress + done
   

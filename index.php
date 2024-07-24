@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar Menu</title>
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -14,7 +14,7 @@
 
     <div class="container-fluid">
         <div class="row">
-        
+
             <div class="col-md-3 sidebar">
 
                 <div class="d-flex align-items-center justify-content-between mb-4">
@@ -68,15 +68,30 @@
             <!-- Main Content -->
             <div class="col-md-9 content">
                 <?php
-                include 'pages/Analysis.html';
+                include 'pages/Maintenance.html';
                 ?>
             </div>
         </div>
     </div>
 
     <!-- =========== Scripts =========  -->
-    <script src="jquery/jquery-3.7.1.min.js"></script>
-    <script src="index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+    let list = $("li");
+    
+    function activeLink() {
+        list.removeClass('hovered');  // Remove 'hovered' class from all list items
+        $(this).addClass('hovered');  // Add 'hovered' class to the current item
+    }
+
+    list.mouseenter(activeLink);
+
+    $('.content').on('click', function () {
+                $('#content').load('pages/Home.html');  // URL of the HTML file
+            });
+});
+    </script>
     <!-- Ionic Framework -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </body>

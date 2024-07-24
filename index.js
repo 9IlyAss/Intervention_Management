@@ -1,56 +1,20 @@
 $(document).ready(function()
 {
+
   // controle hovered class
-  let list = document.querySelectorAll("li");
+  let list = $("li");
 
   function activeLink() {
-  list.forEach((item) => {
-      item.classList.remove("hovered");
+  list.each((item) => {
+      item.removeClass("hovered");
     });
-    this.classList.add("hovered");
+    this.addClass("hovered");
   }
-  
-  list.forEach((item) => item.addEventListener("mouseover", activeLink));
+  list.each((item) => item.mouseenter(activeLink));
   
   //============================================================
         //display
-    
-  // let navlinks=document.querySelectorAll(".navigation a");
-  // let content =document.querySelectorAll(".content");
-  // function navigation()
-  // {
-    
-  //   navlinks.forEach((link)=>
-  //     {
-  //       link.addEventListener("click",()=> 
-  //         {
-  //           let item=link.getAttribute('href').substring(1);
-  //           content.forEach((element)=>
-  //             {
-  //               element.style.display="none";
-  //             });
-  //             document.getElementById(item).style.display="block";
-  //         });
-          
-  //     });
-  // }
-  // navigation();
-  //=================================================================
-  // let navlinks=$(".sidebar a");
-  // let content =$(".title");
-  // function navigation()
-  // {
-  //   navlinks.each((link)=>
-  //     {
-  //       link.click(()=>
-  //       {
-  //         var attr=link.attr('href').substring(1);
-  //         $("content").empty().append("<?php include 'pages/${attr}.html';?>");
-  //       })
-  //     }
-  //   )
-  // }
-  // navigation();
+
   //===================================================================
       // in progress + done
   
@@ -84,7 +48,7 @@ $(document).ready(function()
   
   //=========================================================================
   
-  
+    console.log("jQuery is working!");
   
   
 })

@@ -63,3 +63,6 @@ body {
 .mt-auto {
   margin-top: auto;
 }
+.hovered {
+  background-color: #ff0000; 
+}

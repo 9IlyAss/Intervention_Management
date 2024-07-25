@@ -26,31 +26,31 @@
 
                 <ul class="list-unstyled mt-3">
                     <li>
-                        <a href="#Home" class="d-flex align-items-center text-white Home">
+                        <a id="pages/Home.html" class="d-flex align-items-center text-white link ">
                             <ion-icon name="home-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#Maintenance" class="d-flex align-items-center text-white Maintenance">
+                        <a id="pages/Maintenance.html" class="d-flex align-items-center text-white link">
                             <ion-icon name="construct-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Maintenance</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#Security" class="d-flex align-items-center text-white Security">
+                        <a id="pages/Security.html" class="d-flex align-items-center text-white link">
                             <ion-icon name="lock-closed-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Security</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#Support" class="d-flex align-items-center text-white Support">
+                        <a id="pages/Support.html" class="d-flex align-items-center text-white link">
                             <ion-icon name="people-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Support</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#Analysis" class="d-flex align-items-center text-white Analysis">
+                        <a id="pages/Analysis.html" class="d-flex align-items-center text-white link">
                             <ion-icon name="bar-chart-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Analysis</span>
                         </a>
@@ -58,7 +58,7 @@
                 </ul>
 
                 <!-- Sign Out link -->
-                <a href="#" class="d-flex align-items-center justify-content-center text-white mt-auto" id="Signout">
+                <a id="#" class="d-flex align-items-center justify-content-center text-white mt-auto" id="Signout">
                     <ion-icon name="log-out-outline" class="mr-2 icon-lg"></ion-icon>
                     <span class="title">Sign Out</span>
                 </a>
@@ -67,14 +67,14 @@
 
             <!-- Main Content -->
             <div class="col-md-9 content">
-                <?php
-                include 'pages/Maintenance.html';
-                ?>
+        
+                
             </div>
         </div>
     </div>
 
     <!-- =========== Scripts =========  -->
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -86,9 +86,28 @@
     }
 
     list.mouseenter(activeLink);
-
-    $('.content').on('click', function () {
-                $('#content').load('pages/Home.html');  // URL of the HTML file
+     
+                $.ajax({
+                    url: 'pages/Home.html',
+                    success: function(data) {
+                        $('.content').html(data);
+                    },
+                    error: function() {
+                        $('.content').html('<p>Error loading content.</p>');
+                    }
+                });
+            
+    $('.link').on('click', function () {
+                var url = $(this).attr('id');
+                $.ajax({
+                    url: url,
+                    success: function(data) {
+                        $('.content').html(data);
+                    },
+                    error: function() {
+                        $('.content').html('<p>Error loading content.</p>');
+                    }
+                });
             });
 });
     </script>

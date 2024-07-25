@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -14,6 +13,7 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+
         }
         .header {
             margin-top: 20px;
@@ -27,11 +27,13 @@
             border-radius: 40px 40px 40px 40px;
         
             /* jquery */
-            transform: scale(1.05);
-            transition: transform 0.3s;
+            
         
         }
-
+        .card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
         .iconBox {
             margin: 10px 10px 10px 10px;
             padding: 15px 8px 0px 12px;
@@ -88,6 +90,11 @@
         <div class="header text-center .d-{flex} text-light">
             <h1>Welcome back</h1>
         </div>
+        <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Success !! </strong> Data uploaded successfully.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div> php -->
+
 
 
         <!-- ======================================== Cards ===========================================================
@@ -168,7 +175,7 @@
                             <td>$1200</td>
                             <td>Paid</td>
                             <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
+                            <td><span class="status return"></span></td>
                         </tr>
 
                     </tbody>

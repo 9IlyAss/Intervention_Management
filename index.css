@@ -31,6 +31,8 @@ body {
   color: inherit;
   text-decoration: none;
   transition: background-color 0.3s;
+  cursor: pointer;
+
 }
 
 .sidebar a:hover {
@@ -52,6 +54,7 @@ body {
   font-size: 1.5rem; /* Larger title font size */
   padding-left:15px;
 }
+
 
 .icon-lg {
   font-size: 1.5rem; 

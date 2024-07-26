@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
-    <title>Login</title>
+    <title>Forgot Password</title>
 </head>
 <body>
-    
-    <div class="login-box">
-        <form action="login.php" method="post">
-            <div class="login-header">
-                <header>Forgot Password</header>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card p-4" style="width: 22rem;">
+            <div class="card-body text-center">
+                <h3 class="card-title mb-4">Forgot Password</h3>
+                <form action="login.php" method="post">
+                    <div class="form-group pb-2">
+                        <input type="text" class="form-control" placeholder="Old Password" required>
+                    </div>
+                    <div class="form-group pb-2">
+                        <input type="password" class="form-control" placeholder="New Password" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="acceptChange" name="accept" required>
+                        <label class="form-check-label" for="acceptChange">I Accept The Change Of Password</label>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-block">Submit</button>
+                </form>
             </div>
-            <div class="input-box">
-                <input type="text" class="input-field" placeholder="Old Password">
-            </div>
-            <div class="input-box">
-                <input type="password" class="input-field" placeholder="New Password">
-            </div>
-            <label><input type="checkbox" name="accepte" required> I Accept The Change Of Password</label> <br><br>
-
-            <div class="input-submit">
-                <button class="submit-btn" id="submit"></button>
-                <label for="submit">Submit</label>
-            </div>
-        </form>
+        </div>
     </div>
 </body>
 </html>

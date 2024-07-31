@@ -1,5 +1,5 @@
 <?php
-include 'dbconn.php';
+include("dbconn.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@ include 'dbconn.php';
 
                 <ul class="list-unstyled mt-3">
                     <li>
-                        <a id="pages/Home.html" class="d-flex align-items-center text-white link ">
+                        <a id="pages/Home.php" class="d-flex align-items-center text-white link ">
                             <ion-icon name="home-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Home</span>
                         </a>
@@ -91,7 +91,7 @@ include 'dbconn.php';
     list.mouseenter(activeLink);
      
                 $.ajax({
-                    url: 'pages/Home.html',
+                    url: 'pages/Home.php',
                     success: function(data) {
                         $('.content').html(data);
                     },

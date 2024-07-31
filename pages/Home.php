@@ -1,3 +1,28 @@
+<?php
+include("../dbconn.php");
+
+session_start();
+// nbrIntervention
+        $sql = "SELECT COUNT(*) as nbr FROM Intervention";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $nbrIntervention = $row['nbr'];
+        
+// nbrAccount
+        $sql = "SELECT COUNT(*) as nbr FROM User ;";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $nbrAccount = $row['nbr'];
+//table
+        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,u.Name FROM Intervention i ,User u
+                WHERE u.UserID=i.UserID 
+                ORDER BY i.InterventionID DESC LIMIT 5;";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,7 +113,7 @@
 
     <div id="Home" class="container">
         <div class="header text-center .d-{flex} text-light">
-            <h1>Welcome back</h1>
+            <h1>Welcome back <?php echo $_SESSION["Name"] ; ?></h1>
         </div>
         <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>Success !! </strong> Data uploaded successfully.
@@ -107,7 +132,7 @@
                 </div>
                 <div class="card-body text-light">
                     <h4 class="card-title">Interventions</h4>
-                    <h2 class="card-subtitle">45</h2>
+                    <h2 class="card-subtitle"><?php echo $nbrIntervention ; ?></h2>
                 </div>
             </div>
 
@@ -117,7 +142,7 @@
                 </div>
                 <div class="card-body text-light">
                     <h4 class="card-title">Accounts</h4>
-                    <h2 class="card-subtitle">45</h2>
+                    <h2 class="card-subtitle"><?php echo $nbrAccount ; ?></h2>
                 </div>
             </div>
         </div>
@@ -131,58 +156,36 @@
             </div>
             <div>
                 <table class="table table-hover ">
-                    <thead>
+                <thead>
                         <tr>
-                            <td>Name</td>
-                            <td>Office</td>
-                            <td>N.V</td>
-                            <td>Div/Ser</td>
-                            <td>Status</td>
+                            <th>Reference</th>
+                            <th>Division</th>
+                            <th>Status</th>
+                            <th>Type Of Work</th>
+                            <th>Rapport</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Apple Watch</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td>Paid</td>
-                            <td><span class="status return"></span></td>
-                        </tr>
+
+            <?php
+                while ($row = $result->fetch_assoc())
+            {
+                $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
+
+                echo "<tr>                        
+                        <td>{$row['Reference']} </td>
+                        <td> {$row['Division']} </td>
+                        <td>{$row['TypeOfWork']} </td>
+                        <td><span class=\"$status\">{$row['Status']}</span></td>
+                        <td><button type=\"button\" class=\"btn btn-warning\">Download</button> </td>
+                        </tr>";
+            }
+            ?>
 
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
     </div>
     <!--============================================ JS ==============================================================
     ==============================================================================================================-->

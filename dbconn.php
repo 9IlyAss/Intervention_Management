@@ -16,11 +16,22 @@ if ($db->num_rows == 0)
     }
     $conn->select_db("Intervention_Managment");
 
+$table = $conn->query("SHOW TABLES LIKE 'User'");
+    if ($table->num_rows == 0) 
+    {
+        $sql = "CREATE TABLE User (
+            UserID int AUTO_INCREMENT PRIMARY KEY,
+            Name varchar(50),
+            Email varchar(70),
+            Password varchar(80))";
+            $conn->query($sql);
+    }
     
 $table = $conn->query("SHOW TABLES LIKE 'Intervention'");
 if ($table->num_rows == 0) 
 {
     $sql = "CREATE TABLE Intervention (
+        UserID int,
         InterventionID int AUTO_INCREMENT PRIMARY KEY,
         Type varchar(70),
         Date date DEFAULT CURDATE(),
@@ -29,18 +40,10 @@ if ($table->num_rows == 0)
         Status varchar(70),
         Deatil varchar(255),
         TypeOfWork varchar(70),
-        Rapport LONGBLOB )";
+        Rapport LONGBLOB,
+        FOREIGN KEY (UserID) REFERENCES User(UserID))";
+    $conn->query($sql);
 }
 
-$table = $conn->query("SHOW TABLES LIKE 'Client'");
-if ($table->num_rows == 0) 
-{
-    $sql = "CREATE TABLE Cleint (
-        CleintID int AUTO_INCREMENT PRIMARY KEY,
-        Name varchar(50),
-        Email varchar(70),
-        Password varchar(80)";
-}
 
-$conn->close();
 ?>

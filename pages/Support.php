@@ -1,7 +1,8 @@
 <?php
+session_start();
 include("../dbconn.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$type=$_POST["Maintenance"];
+$type=$_POST["form_type"];
 $Div=$_POST["Div"];
 $Ref=$_POST["Ref"];
 
@@ -10,18 +11,21 @@ $Work=$_POST["Work"];
 $Date=$_POST["Date"];
 $Details=$_POST["Details"];
 
+
 $rapport = $_FILES["rapport"];
-$rapportType = mime_content_type($rapport["tmp_name"]);
+$rapportType = getimagesize($rapport['tmp_name']);
 $rapportData = addslashes(file_get_contents($rapport["tmp_name"]));
 // if ($rapport["size"] > 500000) {
 //     echo "Sorry, your file is too large";
 // }
 $sql="INSERT INTO Intervention (Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
-       VALUES (?,?,?,?,?,?,?,?);"
+       VALUES (?,?,?,?,?,?,?,?,?);";
 $stmt=$conn->prepare($sql);
-$stmt->bind_param("sssssssbs",$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType);
+$stmt->bind_param("sssssssss",$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType['mime']);
 $stmt->execute();
 $stmt->close();
+$_SESSION["success"]="Data has been successfully submitted";
+header("Location: ../index.php");
 }
 ?>
 

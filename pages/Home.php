@@ -117,10 +117,23 @@ session_start();
         <div class="header text-center .d-{flex} text-light">
             <h1>Welcome back <?php echo $_SESSION["Name"] ; ?></h1>
         </div>
-        <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <?php if(isset($_SESSION["success"])): ?>
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>Success !! </strong> Data uploaded successfully.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div> php -->
+        </div> 
+        <?php unset($_SESSION["success"]); ?>
+        <?php endif; ?>
+        
+        <?php if(isset($_SESSION["failed"])): ?>
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Success !! </strong> Data uploaded successfully.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div> 
+        <?php unset($_SESSION["success"]); ?>
+        <?php endif; ?>
 
 
 

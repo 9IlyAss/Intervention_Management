@@ -1,26 +1,26 @@
 <?php
 include("../dbconn.php");
-
 session_start();
+
 $Date=$_POST["Date"];
 // nbrIntervention
-        $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=$_SESSION["ID"] ;";
+        $sql = 'SELECT COUNT(*) AS nbr FROM Intervention WHERE UserID=' . $_SESSION["ID"] . ';';
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $nbrIntervention = $row['nbr'];
         
 // nbrMaintenance
-        $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=$_SESSION["ID"] AND type LIKE 'Maintenance';";
+$sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"] . " AND Type LIKE 'Maintenance';";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $nbrMaintenance = $row['nbr'];
 // nbrSecurity
-        $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=$_SESSION["ID"] AND type LIKE 'Security';";
+$sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"] . " AND Type LIKE 'Security';";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $nbrSecurity = $row['nbr'];
 // nbrSupport
-        $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=$_SESSION["ID"] AND type LIKE 'Support';";
+$sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"] . " AND Type LIKE 'Support';";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $nbrSupport = $row['nbr'];

@@ -27,11 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             else
                 {
-                    $_SESSION["Email"] = $Email;
+                    $_SESSION["Email"] = $dbEmail;
                     $_SESSION["Name"] = $dbName;
-                    $_SESSION["ID"]=$UserID;
+                    $_SESSION["ID"]=$dbUserID;
                     header("Location: ../index.php");
-                    
                     exit();
                 }
             

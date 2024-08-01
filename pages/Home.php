@@ -1,7 +1,7 @@
 <?php
 include("../dbconn.php");
-
 session_start();
+
 // nbrIntervention
         $sql = "SELECT COUNT(*) as nbr FROM Intervention";
         $result = $conn->query($sql);
@@ -13,13 +13,15 @@ session_start();
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $nbrAccount = $row['nbr'];
-//table
-        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,u.Name FROM Intervention i ,User u
-                WHERE u.UserID=i.UserID 
-                ORDER BY i.InterventionID DESC LIMIT 5;";
+//table ++++++++RapportType
+        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,RapportType FROM Intervention
+                WHERE UserID=? 
+                ORDER BY InterventionID DESC LIMIT 5;";
         $stmt=$conn->prepare($sql);
+        $stmt->bind_param("i",$_SESSION["ID"]);
         $stmt->execute();
         $result = $stmt->get_result();
+
 ?>
 
 
@@ -171,13 +173,17 @@ session_start();
                 while ($row = $result->fetch_assoc())
             {
                 $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
-
                 echo "<tr>                        
                         <td>{$row['Reference']} </td>
                         <td> {$row['Division']} </td>
                         <td>{$row['TypeOfWork']} </td>
                         <td><span class=\"$status\">{$row['Status']}</span></td>
-                        <td><button type=\"button\" class=\"btn btn-warning\">Download</button> </td>
+                        <td> <form action='Download.php' method='post'>
+                                <input type='hidden' name='rapport' value='{$row['Rapport']}'>
+                                <input type='hidden' name='rapporttype' value='{$row['RapportType']}'>
+                                <button type='submit' class='btn btn-warning'>Download</button>
+                            </form>
+                        </td>
                         </tr>";
             }
             ?>

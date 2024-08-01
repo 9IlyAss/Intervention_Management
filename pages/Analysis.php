@@ -1,3 +1,46 @@
+<?php
+include("../dbconn.php");
+
+session_start();
+$Date=$_POST["Date"];
+// nbrIntervention
+        $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=$_SESSION["ID"] ;";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $nbrIntervention = $row['nbr'];
+        
+// nbrMaintenance
+        $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=$_SESSION["ID"] AND type LIKE 'Maintenance';";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $nbrMaintenance = $row['nbr'];
+// nbrSecurity
+        $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=$_SESSION["ID"] AND type LIKE 'Security';";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $nbrSecurity = $row['nbr'];
+// nbrSupport
+        $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=$_SESSION["ID"] AND type LIKE 'Support';";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $nbrSupport = $row['nbr'];
+
+
+
+
+
+
+
+//table ++++++++RapportType
+        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,RapportType FROM Intervention
+                WHERE UserID=? AND Date=?
+                ORDER BY InterventionID DESC;";
+        $stmt=$conn->prepare($sql);
+        $stmt->bind_param("is",$_SESSION["ID"],$Date);
+        $stmt->execute();
+        $result = $stmt->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +112,30 @@
             transform: scale(1.05);
             transition: transform 0.3s;
         }
+
+
+        
+        .Intervention {
+            margin-top: 40px;
+            
+        }
+
+        .table {
+            border-radius: 10px;
+        }
+
+        .conntainer {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .table {
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .table th,.table td {
+            padding: 16px;
+        }
     </style>
 </head>
 
@@ -84,7 +151,7 @@
 
                 <div class="form-group mb-3">
                     <label for="dateInput">Date :</label>
-                    <input type="date" class="form-control" id="dateInput" placeholder="">
+                    <input type="date" class="form-control" id="dateInput" name="Date" placeholder="">
                 </div>
                 <div class="d-grid gap-2 col-7 mx-auto">
                     <button type="submit" class="btn btn-danger btn-lg">Submit</button>
@@ -100,7 +167,7 @@
                             <ion-icon name="receipt-outline" class="card-icon"></ion-icon>
                         </div>
                         <h4 class="card-title">Interventions</h4>
-                        <h2 class="card-subtitle">0</h2>
+                        <h2 class="card-subtitle"><?php echo $nbrIntervention ; ?></h2>
                     </div>
                 </div>
             </div>
@@ -111,7 +178,7 @@
                             <ion-icon name="construct-outline" class="mr-2 card-icon"></ion-icon>
                         </div>
                         <h4 class="card-title">Maintenance</h4>
-                        <h2 class="card-subtitle">0</h2>
+                        <h2 class="card-subtitle"><?php echo $nbrMaintenance ; ?></h2>
                     </div>
                 </div>
             </div>
@@ -122,7 +189,7 @@
                             <ion-icon name="lock-closed-outline" class="mr-2 card-icon"></ion-icon>
                         </div>
                         <h4 class="card-title">Security</h4>
-                        <h2 class="card-subtitle">0</h2>
+                        <h2 class="card-subtitle"><?php echo $nbrSecurity ; ?></h2>
                     </div>
                 </div>
             </div>
@@ -133,9 +200,51 @@
                             <ion-icon name="people-outline" class="mr-2 card-icon"></ion-icon>
                         </div>
                         <h4 class="card-title">Support</h4>
-                        <h2 class="card-subtitle">0</h2>
+                        <h2 class="card-subtitle"><?php echo $nbrSupport ; ?></h2>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="Intervention">
+            <div class="tableheader">
+                <h2>Intervention</h2>
+            </div>
+            <div>
+                <table class="table table-hover ">
+                <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Division</th>
+                            <th>Status</th>
+                            <th>Type Of Work</th>
+                            <th>Rapport</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+            <?php
+                while ($row = $result->fetch_assoc())
+            {
+                $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
+                $_SESSION['Rapport']=$row["Rapport"];
+                echo "<tr>                        
+                        <td>{$row['Reference']} </td>
+                        <td> {$row['Division']} </td>
+                        <td>{$row['TypeOfWork']} </td>
+                        <td><span class=\"$status\">{$row['Status']}</span></td>
+                        <td>    <form action='Download.php' method='post'>
+                                    <input type='hidden' name='rapport' value='{$row['Rapport']}'>
+                                    <input type='hidden' name='rapporttype' value='{$row['RapportType']}'>
+                                    <button type='submit' class='btn btn-warning'>Download</button>
+                                </form>
+                        </td>
+                        </tr>";
+            }
+            ?>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

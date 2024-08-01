@@ -1,3 +1,30 @@
+<?php
+include("../dbconn.php");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$type=$_POST["Maintenance"];
+$Div=$_POST["Div"];
+$Ref=$_POST["Ref"];
+
+$typeWork=$_POST["typeWork"];
+$Work=$_POST["Work"];
+$Date=$_POST["Date"];
+$Details=$_POST["Details"];
+
+$rapport = $_FILES["rapport"];
+$rapportType = mime_content_type($rapport["tmp_name"]);
+$rapportData = addslashes(file_get_contents($rapport["tmp_name"]));
+// if ($rapport["size"] > 500000) {
+//     echo "Sorry, your file is too large";
+// }
+$sql="INSERT INTO Intervention (Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
+       VALUES (?,?,?,?,?,?,?,?);"
+$stmt=$conn->prepare($sql);
+$stmt->bind_param("sssssssbs",$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType);
+$stmt->execute();
+$stmt->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,16 +98,16 @@
 
                 <div class="form-group mb-3">
                     <label for="refInput">Ref :</label>
-                    <input type="text" class="form-control" id="refInput" placeholder="">
+                    <input type="text" class="form-control" id="refInput" name="Ref" placeholder="">
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="divSerInput">Div/Ser :</label>
-                    <input type="text" class="form-control" id="divSerInput" placeholder="">
+                    <input type="text" class="form-control" id="divSerInput" name="Div" placeholder="">
                 </div>
                 <div class="form-group mb-3">
                     <label for="dateInput">Date :</label>
-                    <input type="date" class="form-control" id="dateInput" placeholder="">
+                    <input type="date" class="form-control" id="dateInput" name="Date" placeholder="">
                 </div>
 
                 <div class="row justify-content-center mb-3">
@@ -98,7 +125,7 @@
                 <div class="row justify-content-center mb-3">
                     <label class="pb-2">Details :</label>
                     <div class="col-md-8"> <!-- Adjusted width here -->
-                            <textarea class="form-control" placeholder="" id="textarea"></textarea>
+                            <textarea class="form-control" name="Details" placeholder="" id="textarea"></textarea>
                     </div>
                 </div>
 

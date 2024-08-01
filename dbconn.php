@@ -34,14 +34,15 @@ if ($table->num_rows == 0)
         UserID int,
         InterventionID int AUTO_INCREMENT PRIMARY KEY,
         Type varchar(70),
-        Date date DEFAULT CURDATE(),
+        Date date ,
         Reference varchar(50),
         Division varchar(50),
         Status varchar(70),
-        Deatil varchar(255),
+        Detail varchar(255),
         TypeOfWork varchar(70),
         Rapport LONGBLOB,
-        FOREIGN KEY (UserID) REFERENCES User(UserID))";
+        RapportType VARCHAR (70),
+        FOREIGN KEY (UserID) REFERENCES User(UserID));";
     $conn->query($sql);
 }
 

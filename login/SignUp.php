@@ -1,51 +1,39 @@
 <?php
-include("/dbconn.php");
+session_start();
+include("../dbconn.php");
+
+$message = '';
+$style = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email=$_POST["Email"];
-    $Name=$_POST["Name"];
-    $Password=$_POST["Password"];
-    $ConfirmPassword=$_POST["Confirmpassword"];
+    $email = $_POST["Email"];
+    $Name = $_POST["Name"];
+    $Password = $_POST["Password"];
+    $ConfirmPassword = $_POST["Confirmpassword"];
     
-    if($Password!=$ConfirmPassword)
-        {
-            echo "<script>
-                        $(document).ready(function() {
-                            $('.form-group:first').before('<div class=\"alert alert-danger\" role=\"alert\">Passwords do not match !</div>');
-                        });
-                    </script>";
-            exit();
+    if ($Password != $ConfirmPassword) {
+        $message = "Passwords do not match!";
+        $style = "danger";
+    } else {
+        $sql = "SELECT Email FROM User WHERE Email=?;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0) {
+            $message = "The Email Already Exists!";
+            $style = "danger";
+        } else {
+            $sql = "INSERT INTO User (Name, Email, Password) VALUES (?, ?, ?);";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sss", $Name, $email, $Password);
+            $stmt->execute();
+            $message = "You have successfully signed up! <a href='login.php' class='alert-link'>Click here to log in</a>";
+            $style = "success";
         }
-    $sql="SELECT Email FROM User Where Email=? ;";
-    $stmt=$conn->prepare($sql);
-    $stmt->bind_param("s",$email);
-    $stmt->execute();
-    $stmt->store_result();
-        if($stmt->num_rows>0)
-            {
-                echo "<script>
-                        $(document).ready(function() {
-                            $('.form-group:first').before('<div class=\"alert alert-danger\" role=\"alert\">The Email Alredy Exist !</div>');
-                        });
-                    </script>";
-                $stmt->close();
-                exit();
-            }
-            else
-            {
-                $sql="INSERT INTO User (Name,Email,Password) VALUES (?, ?, ?);";
-                $stmt=$conn->prepare($sql);
-                $stmt->bind_param("sss",$Name,$email,$Password);
-                $stmt->execute();
-                    echo "<script>
-                        $(document).ready(function() {
-                            $('.form-group:first').before('<div class=\"alert alert-success\" role=\"alert\" >You have successfully signed up! <a href=\"login.php\" class=\"alert-link\">Click here to log in</a></div>');
-                        });
-                    </script>";
-                $stmt->close();
-            }
+        $stmt->close();
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -53,14 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
     <title>Sign Up</title>
 </head>
 <body>
     
     <div class="img ml-4">
-        <img src="/Img/OIP-removebg-preview.png">
+        <img src="../Img/OIP-removebg-preview.png" alt="Logo">
     </div>
     
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
@@ -68,8 +56,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card-body text-center">
                 <h3 class="card-title mb-5">Sign Up</h3>
                 <form action="" method="post">
+                <?php if (!empty($message)): ?>
+                    <div class="alert alert-<?php echo $style; ?> mt-3" role="alert">
+                        <?php echo $message; ?>
+                        <?php
+                        $message= '';
+                        $style = '';
+                        ?>
+                    </div>
+                <?php endif; ?>
                     <div class="form-group mb-2">
-                        <input type="text" class="form-control" placeholder="Name"  name="Name" required>
+                        <input type="text" class="form-control" placeholder="Name" name="Name" required>
                     </div>
                     <div class="form-group mb-2">
                         <input type="email" class="form-control" placeholder="Email" name="Email" required>
@@ -83,14 +80,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit" class="btn btn-dark btn-block">Sign Up</button>
                 </form>
                 <div class="mt-3">
-                    <p>Already have an account? <a href="login.html">Sign In</a></p>
+                    <p>Already have an account? <a href="login.php">Sign In</a></p>
                 </div>
+                
             </div>
         </div>
     </div>
-    <script src="/jquery/jquery-3.7.1.min.js"></script>
-    <script>
-        
-    </script>
+    <script src="../jquery/jquery-3.7.1.min.js"></script>
 </body>
 </html>

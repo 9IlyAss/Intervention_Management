@@ -35,25 +35,25 @@ include("dbconn.php");
                         </a>
                     </li>
                     <li>
-                        <a id="pages/Maintenance.html" class="d-flex align-items-center text-white link">
+                        <a id="pages/Maintenance.php" class="d-flex align-items-center text-white link">
                             <ion-icon name="construct-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Maintenance</span>
                         </a>
                     </li>
                     <li>
-                        <a id="pages/Security.html" class="d-flex align-items-center text-white link">
+                        <a id="pages/Security.php" class="d-flex align-items-center text-white link">
                             <ion-icon name="lock-closed-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Security</span>
                         </a>
                     </li>
                     <li>
-                        <a id="pages/Support.html" class="d-flex align-items-center text-white link">
+                        <a id="pages/Support.php" class="d-flex align-items-center text-white link">
                             <ion-icon name="people-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Support</span>
                         </a>
                     </li>
                     <li>
-                        <a id="pages/Analysis.html" class="d-flex align-items-center text-white link">
+                        <a id="pages/Analysis.php" class="d-flex align-items-center text-white link">
                             <ion-icon name="bar-chart-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Analysis</span>
                         </a>

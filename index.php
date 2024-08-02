@@ -61,7 +61,7 @@ include("dbconn.php");
                 </ul>
 
                 <!-- Sign Out link -->
-                <a id="#" class="d-flex align-items-center justify-content-center text-white mt-auto" id="Signout">
+                <a id="pages/SignOut.php" class="d-flex align-items-center justify-content-center text-white mt-auto" id="Signout">
                     <ion-icon name="log-out-outline" class="mr-2 icon-lg"></ion-icon>
                     <span class="title">Sign Out</span>
                 </a>
@@ -87,7 +87,6 @@ include("dbconn.php");
         list.removeClass('hovered');  // Remove 'hovered' class from all list items
         $(this).addClass('hovered');  // Add 'hovered' class to the current item
     }
-
     list.mouseenter(activeLink);
      
                 $.ajax({
@@ -99,6 +98,7 @@ include("dbconn.php");
                         $('.content').html('<p>Error loading content.</p>');
                     }
                 });
+    
             
     $('.link').on('click', function () {
                 var url = $(this).attr('id');

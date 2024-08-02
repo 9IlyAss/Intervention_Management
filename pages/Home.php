@@ -175,31 +175,41 @@ session_start();
                         <tr>
                             <th>Reference</th>
                             <th>Division</th>
-                            <th>Status</th>
                             <th>Type Of Work</th>
+                            <th>Status</th>
                             <th>Rapport</th>
                         </tr>
                     </thead>
                     <tbody>
 
-            <?php
-                while ($row = $result->fetch_assoc())
-            {
-                $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
-                echo "<tr>                        
-                        <td>{$row['Reference']} </td>
-                        <td> {$row['Division']} </td>
-                        <td>{$row['TypeOfWork']} </td>
-                        <td><span class=\"$status\">{$row['Status']}</span></td>
-                        <td> <form action='Download.php' method='post'>
-                                <input type='hidden' name='rapport' value='{$row['Rapport']}'>
-                                <input type='hidden' name='rapporttype' value='{$row['RapportType']}'>
-                                <button type='submit' class='btn btn-warning'>Download</button>
-                            </form>
-                        </td>
-                        </tr>";
-            }
-            ?>
+                    <?php
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
+        $rapport = base64_encode($row['Rapport']);
+        $rapportType = htmlspecialchars($row['RapportType'], ENT_QUOTES, 'UTF-8');
+        $InterventionID= $row['InterventionID'];
+        echo "<tr>
+                <td>{$row['Reference']}</td>
+                <td>{$row['Division']}</td>
+                <td>{$row['TypeOfWork']}</td>
+                <td><span class=\"$status\">{$row['Status']}</span></td>
+                <td>
+                    <form action='pages/Download.php' method='POST' target='_blank'>
+                        <input type='hidden' name='rapport' value='$rapport'>
+                        <input type='hidden' name='rapporttype' value='$rapportType'>
+                        <input type='hidden' name='rapporttype' value='$InterventionID'>
+                        <button type='submit' class='btn btn-warning'>View</button>
+                    </form>
+                </td>
+              </tr>";
+            
+    }
+} else {
+    echo "<tr><td colspan='5'>No recent interventions found.</td></tr>";
+}
+?>
+
 
                     </tbody>
                 </table>

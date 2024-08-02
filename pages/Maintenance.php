@@ -9,18 +9,18 @@ $Ref=$_POST["Ref"];
 $typeWork=$_POST["typeWork"];
 $Work=$_POST["Work"];
 $Date=$_POST["Date"];
-$Details="";
+$Details="---";
 
 $rapport = $_FILES["rapport"];
-$rapportType = getimagesize($rapport['tmp_name']);
+$rapportType =$rapport["type"];
 $rapportData = addslashes(file_get_contents($rapport["tmp_name"]));
 // if ($rapport["size"] > 500000) {
 //     echo "Sorry, your file is too large";
 // }
-$sql="INSERT INTO Intervention (Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
-       VALUES (?,?,?,?,?,?,?,?,?);";
+$sql="INSERT INTO Intervention (UserID,Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
+       VALUES (?,?,?,?,?,?,?,?,?,?);";
 $stmt=$conn->prepare($sql);
-$stmt->bind_param("sssssssss",$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType['mime']);
+$stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType);
 $stmt->execute();
 $stmt->close();
 $_SESSION["success"]="Data has been successfully submitted";
@@ -118,11 +118,11 @@ header("Location: ../index.php");
                 <div class="row justify-content-center mb-3">
                     <label class="pb-2">The Work :</label>
                     <div class="col-md-2">
-                        <input type="radio" class="btn-check" name="Work" id="completedRadio" value="WorkCompleted" onclick="done()" checked>
+                        <input type="radio" class="btn-check" name="Work" id="completedRadio" value="Completed" onclick="done()" checked>
                         <label class="btn woty btn-outline-success " for="completedRadio">Completed</label>
                     </div>
                     <div class="col-md-2">
-                        <input type="radio" class="btn-check" name="Work" id="progressRadio" value="WorkProgress" onclick="inprogress()">
+                        <input type="radio" class="btn-check" name="Work" id="progressRadio" value="InProgress" onclick="inprogress()">
                         <label class="btn woty btn-outline-primary" for="progressRadio">In Progress</label>
                     </div>
                 </div>

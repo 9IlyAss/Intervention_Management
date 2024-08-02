@@ -2,7 +2,10 @@
 include("../dbconn.php");
 session_start();
 
-$Date=$_POST["Date"];
+if (isset($_POST["Date"]) && !empty($_POST["Date"])) {
+    $Date = $_POST["Date"];
+    
+}
 // nbrIntervention
         $sql = 'SELECT COUNT(*) AS nbr FROM Intervention WHERE UserID=' . $_SESSION["ID"] . ';';
         $result = $conn->query($sql);
@@ -39,6 +42,7 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
         $stmt->bind_param("is",$_SESSION["ID"],$Date);
         $stmt->execute();
         $result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -146,9 +150,8 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
         </div>
 
         <div class="container d-flex flex-column align-items-center">
-            <form action="" method="post" class="w-100">
+            <form action="pages/Analysis.php" method="post" class="w-100">
                 <input type="hidden" name="form_type" value="Analysis">
-
                 <div class="form-group mb-3">
                     <label for="dateInput">Date :</label>
                     <input type="date" class="form-control" id="dateInput" name="Date" placeholder="">

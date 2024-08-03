@@ -14,7 +14,7 @@ session_start();
         $row = $result->fetch_assoc();
         $nbrAccount = $row['nbr'];
 //table ++++++++RapportType
-        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,RapportType FROM Intervention
+        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,RapportType,InterventionID FROM Intervention
                 WHERE UserID=? 
                 ORDER BY InterventionID DESC LIMIT 5;";
         $stmt=$conn->prepare($sql);
@@ -186,19 +186,15 @@ session_start();
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
-        $rapport = base64_encode($row['Rapport']);
-        $rapportType = htmlspecialchars($row['RapportType'], ENT_QUOTES, 'UTF-8');
-        $InterventionID= $row['InterventionID'];
+        $ID= $row['InterventionID'];
         echo "<tr>
                 <td>{$row['Reference']}</td>
                 <td>{$row['Division']}</td>
                 <td>{$row['TypeOfWork']}</td>
                 <td><span class=\"$status\">{$row['Status']}</span></td>
                 <td>
-                    <form action='pages/Download.php' method='POST' target='_blank'>
-                        <input type='hidden' name='rapport' value='$rapport'>
-                        <input type='hidden' name='rapporttype' value='$rapportType'>
-                        <input type='hidden' name='rapporttype' value='$InterventionID'>
+                    <form action='pages/Download.php' method='GET' target='_blank'>
+                        <input type='hidden' name='ID' value='$ID'>
                         <button type='submit' class='btn btn-warning'>View</button>
                     </form>
                 </td>

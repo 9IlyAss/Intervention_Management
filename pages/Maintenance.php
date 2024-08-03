@@ -13,7 +13,7 @@ $Details="---";
 
 $rapport = $_FILES["rapport"];
 $rapportType =$rapport["type"];
-$rapportData = addslashes(file_get_contents($rapport["tmp_name"]));
+$rapportData =file_get_contents($rapport["tmp_name"]);
 // if ($rapport["size"] > 500000) {
 //     echo "Sorry, your file is too large";
 // }

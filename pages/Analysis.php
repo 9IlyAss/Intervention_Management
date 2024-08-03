@@ -30,12 +30,8 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
 
 
 
-
-
-
-
 //table ++++++++RapportType
-        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,RapportType FROM Intervention
+        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,RapportType,InterventionID  FROM Intervention
                 WHERE UserID=? AND Date=?
                 ORDER BY InterventionID DESC;";
         $stmt=$conn->prepare($sql);
@@ -227,22 +223,26 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
                     <tbody>
 
             <?php
-                while ($row = $result->fetch_assoc())
-            {
-                $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
-                $_SESSION['Rapport']=$row["Rapport"];
-                echo "<tr>                        
-                        <td>{$row['Reference']} </td>
-                        <td> {$row['Division']} </td>
-                        <td>{$row['TypeOfWork']} </td>
-                        <td><span class=\"$status\">{$row['Status']}</span></td>
-                        <td>    <form action='Download.php' method='post'>
-                                    <input type='hidden' name='rapport' value='{$row['Rapport']}'>
-                                    <input type='hidden' name='rapporttype' value='{$row['RapportType']}'>
-                                    <button type='submit' class='btn btn-warning'>Download</button>
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
+                    $ID= $row['InterventionID'];
+                    echo "<tr>
+                            <td>{$row['Reference']}</td>
+                            <td>{$row['Division']}</td>
+                            <td>{$row['TypeOfWork']}</td>
+                            <td><span class=\"$status\">{$row['Status']}</span></td>
+                            <td>
+                                <form action='pages/Download.php' method='GET' target='_blank'>
+                                    <input type='hidden' name='ID' value='$ID'>
+                                    <button type='submit' class='btn btn-warning'>View</button>
                                 </form>
-                        </td>
-                        </tr>";
+                            </td>
+                          </tr>";
+                        
+                }
+            } else {
+                echo "<tr><td colspan='5'>No recent interventions found.</td></tr>";
             }
             ?>
 

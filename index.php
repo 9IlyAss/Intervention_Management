@@ -21,7 +21,7 @@ include("dbconn.php");
             <div class="col-md-3 sidebar">
 
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <a href="#" class="d-flex align-items-center text-white">
+                    <a  id="pages/Home.php" class="d-flex align-items-center text-white link">
                         <img class="logoBSRI" src="Img/BSRIQZ-01.png" alt="Logo">
                         <span class="title h4 mb-0 ml-2">Intervention Management</span>
                     </a>
@@ -29,7 +29,7 @@ include("dbconn.php");
 
                 <ul class="list-unstyled mt-3">
                     <li>
-                        <a id="pages/Home.php" class="d-flex align-items-center text-white link ">
+                        <a id="pages/Home.php" class="d-flex align-items-center text-white link">
                             <ion-icon name="home-outline" class="mr-2 icon-lg"></ion-icon>
                             <span class="title">Home</span>
                         </a>
@@ -61,7 +61,7 @@ include("dbconn.php");
                 </ul>
 
                 <!-- Sign Out link -->
-                <a id="pages/SignOut.php" class="d-flex align-items-center justify-content-center text-white mt-auto" id="Signout">
+                <a href="pages/SignOut.php" class="d-flex align-items-center justify-content-center text-white mt-auto link" >
                     <ion-icon name="log-out-outline" class="mr-2 icon-lg"></ion-icon>
                     <span class="title">Sign Out</span>
                 </a>
@@ -82,11 +82,14 @@ include("dbconn.php");
     <script>
         $(document).ready(function () {
     let list = $("li");
-    
     function activeLink() {
         list.removeClass('hovered');  // Remove 'hovered' class from all list items
         $(this).addClass('hovered');  // Add 'hovered' class to the current item
     }
+
+ 
+
+
     list.mouseenter(activeLink);
      
                 $.ajax({

@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-if (isset($_POST["Date"]) && !empty($_POST["Date"])) {
-    $Date = $_POST["Date"];
     
-}
+    
 // nbrIntervention
         $sql = 'SELECT COUNT(*) AS nbr FROM Intervention WHERE UserID=' . $_SESSION["ID"] . ';';
         $result = $conn->query($sql);
@@ -30,13 +28,19 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
 
 
 //table ++++++++RapportType
-        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,RapportType,InterventionID  FROM Intervention
+    if(isset($_POST["Date"]) && !empty($_POST["Date"]))
+        {
+            $Date = $_POST["Date"];
+
+            $sql="SELECT  Reference,Division,Status,TypeOfWork,InterventionID  FROM Intervention
                 WHERE UserID=? AND Date=?
                 ORDER BY InterventionID DESC;";
-        $stmt=$conn->prepare($sql);
-        $stmt->bind_param("is",$_SESSION["ID"],$Date);
-        $stmt->execute();
-        $result = $stmt->get_result();
+            $stmt=$conn->prepare($sql);
+            $stmt->bind_param("is",$_SESSION["ID"],$Date);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        }
+        
 
 ?>
 
@@ -47,6 +51,8 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analysis Form</title>
+    <!--============================================ CSS ==============================================================
+    ==============================================================================================================-->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -137,7 +143,8 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
         }
     </style>
 </head>
-
+<!--============================================ HTML ==============================================================
+    ==============================================================================================================-->
 <body>
     <div id="Analysis">
         <div class="header text-center">
@@ -232,10 +239,20 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
                             <td>{$row['TypeOfWork']}</td>
                             <td><span class=\"$status\">{$row['Status']}</span></td>
                             <td>
-                                <form action='pages/Download.php' method='GET' target='_blank'>
-                                    <input type='hidden' name='ID' value='$ID'>
-                                    <button type='submit' class='btn btn-warning'>View</button>
-                                </form>
+                                <div class='row justify-content-center w-100'>
+                                    <div class='col-md-3'>
+                                        <form action='pages/View.php' method='GET' target='_blank' >
+                                            <input type='hidden' name='ID' value='$ID'>
+                                            <button type='submit' class='btn btn-warning'>View</button>
+                                        </form>
+                                    </div>
+                                    <div class='col-md-3'>
+                                        <form action='pages/Download.php' method='GET'>
+                                            <input type='hidden' name='ID' value='$ID'>
+                                            <button type='submit' class='btn btn-info'>Download</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                           </tr>";
                         
@@ -250,7 +267,7 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
     $(document).ready(function() {
     });

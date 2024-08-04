@@ -13,7 +13,7 @@ session_start();
         $row = $result->fetch_assoc();
         $nbrAccount = $row['nbr'];
 //table ++++++++RapportType
-        $sql="SELECT  Reference,Division,Status,TypeOfWork,Rapport,RapportType,InterventionID FROM Intervention
+        $sql="SELECT  Reference,Division,Status,TypeOfWork,InterventionID FROM Intervention
                 WHERE UserID=? 
                 ORDER BY InterventionID DESC LIMIT 5;";
         $stmt=$conn->prepare($sql);
@@ -81,9 +81,7 @@ session_start();
 
         /*============================================table=============================================*/
 
-        
-
-
+    
 
         .Recentintervention {
             margin-top: 40px;
@@ -119,19 +117,18 @@ session_start();
         <?php if(isset($_SESSION["success"])): ?>
 
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Success !! </strong> Data uploaded successfully.
+            <strong>Success !! </strong> <?php echo $_SESSION["success"]; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div> 
         <?php unset($_SESSION["success"]); ?>
         <?php endif; ?>
         
         <?php if(isset($_SESSION["failed"])): ?>
-
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Success !! </strong> Data uploaded successfully.
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Failed !! </strong> <?php echo $_SESSION["failed"]; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div> 
-        <?php unset($_SESSION["success"]); ?>
+        <?php unset($_SESSION["failed"]); ?>
         <?php endif; ?>
 
 
@@ -181,28 +178,36 @@ session_start();
                     </thead>
                     <tbody>
 
-                    <?php
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
-        $ID= $row['InterventionID'];
-        echo "<tr>
-                <td>{$row['Reference']}</td>
-                <td>{$row['Division']}</td>
-                <td>{$row['TypeOfWork']}</td>
-                <td><span class=\"$status\">{$row['Status']}</span></td>
-                <td>
-                    <form action='pages/Download.php' method='GET' target='_blank'>
-                        <input type='hidden' name='ID' value='$ID'>
-                        <button type='submit' class='btn btn-warning'>View</button>
-                    </form>
-                </td>
-              </tr>";
-            
-    }
-} else {
-    echo "<tr><td colspan='5'>No recent interventions found.</td></tr>";
-}
+    <?php
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $status = ($row["Status"] === "Completed") ? "text-primary fs-5" : "text-danger fs-5";
+                $ID= $row['InterventionID'];
+                echo "<tr>
+                        <td>{$row['Reference']}</td>
+                        <td>{$row['Division']}</td>
+                        <td>{$row['TypeOfWork']}</td>
+                        <td><span class=\"$status\">{$row['Status']}</span></td>
+                        <td>
+                            <div class='row justify-content-center w-100'>
+                                <div class='col-md-3'>
+                                    <form action='pages/View.php' method='GET' target='_blank' >
+                                        <input type='hidden' name='ID' value='$ID'>
+                                        <button type='submit' class='btn btn-warning'>View</button>
+                                    </form>
+                                </div>
+                                <div class='col-md-3'>
+                                    <form action='pages/Download.php' method='GET'>
+                                        <input type='hidden' name='ID' value='$ID'>
+                                        <button type='submit' class='btn btn-info'>Download</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>";
+                    
+            }
+        }
 ?>
 
 

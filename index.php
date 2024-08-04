@@ -14,7 +14,8 @@ include("dbconn.php");
 </head>
 
 <body>
-
+ <!--============================================ HTML ==============================================================
+    ==============================================================================================================-->
     <div class="container-fluid">
         <div class="row">
 
@@ -60,7 +61,6 @@ include("dbconn.php");
                     </li>
                 </ul>
 
-                <!-- Sign Out link -->
                 <a href="pages/SignOut.php" class="d-flex align-items-center justify-content-center text-white mt-auto link" >
                     <ion-icon name="log-out-outline" class="mr-2 icon-lg"></ion-icon>
                     <span class="title">Sign Out</span>
@@ -68,50 +68,35 @@ include("dbconn.php");
 
             </div>
 
-            <!-- Main Content -->
+ <!--============================================ Main ==============================================================
+    ==============================================================================================================-->
             <div class="col-md-9 content">
             <?php
-                // Default page
                 $page = isset($_GET['page']) ? $_GET['page'] : 'Home';
-                
-                // Sanitize the page parameter
                 $page = preg_replace('/[^a-zA-Z0-9]/', '', $page);
-                
-                // Determine the file to include
-                $file = "pages/{$page}.php";
-                
-                if (file_exists($file)) {
-                    include($file);
-                } else {
-                    echo '<p>Error loading content.</p>';
-                }
-                ?>
-                
+                $page = "pages/{$page}.php";
+                    include($page);
+            ?>
             </div>
         </div>
     </div>
 
-    <!-- =========== Scripts =========  -->
+ <!--============================================ Script ==============================================================
+    ==============================================================================================================-->
     <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-    let list = $("li");
-    function activeLink() {
-        list.removeClass('hovered');  // Remove 'hovered' class from all list items
-        $(this).addClass('hovered');  // Add 'hovered' class to the current item
-    }
-    list.mouseenter(activeLink);
-});
-
- 
-
-
-    
-     
-
+            let list = $("li");
+            function activeLink() {
+                list.removeClass('hovered'); 
+                $(this).addClass('hovered');  
+            }
+            list.mouseenter(activeLink);
+        });
     </script>
-    <!-- Ionic Framework -->
+ <!--============================================ Ionic Framework  ==============================================================
+    ==============================================================================================================-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </body>
 

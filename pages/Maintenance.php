@@ -13,16 +13,26 @@ $Details="---";
 $rapport = $_FILES["rapport"];
 $rapportType =$rapport["type"];
 $rapportData =file_get_contents($rapport["tmp_name"]);
-// if ($rapport["size"] > 500000) {
-//     echo "Sorry, your file is too large";
-// }
-$sql="INSERT INTO Intervention (UserID,Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
-       VALUES (?,?,?,?,?,?,?,?,?,?);";
-$stmt=$conn->prepare($sql);
-$stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType);
-$stmt->execute();
-$stmt->close();
-$_SESSION["success"]="Data has been successfully submitted";
+
+    $array=['image/jpeg', 'image/png', 'application/pdf'];
+    if ($rapport["size"] > 500000) 
+        {
+            $_SESSION["failed"]="Data upload failed (your file is too large).";
+        }
+    else if(!in_array($rapportType,$array))
+        {
+            $_SESSION["failed"]="Data upload failed (only JPG, JPEG, PNG files are allowed.).";
+        }
+    else 
+        {
+            $sql="INSERT INTO Intervention (UserID,Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
+                VALUES (?,?,?,?,?,?,?,?,?,?);";
+            $stmt=$conn->prepare($sql);
+            $stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType);
+            $stmt->execute();
+            $stmt->close();
+            $_SESSION["success"]="Data uploaded successfully .";
+    }
 header("Location: ../index.php");
 }
 ?>
@@ -36,6 +46,8 @@ header("Location: ../index.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maintenance Form</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <!--============================================ CSS ==============================================================
+    ==============================================================================================================-->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -88,7 +100,8 @@ header("Location: ../index.php");
         }
     </style>
 </head>
-
+<!--============================================ HTML ==============================================================
+    ==============================================================================================================-->
 <body>
     <div id="Maintenance">
         <div class="header text-center">
@@ -156,11 +169,6 @@ header("Location: ../index.php");
             </form>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script >
-
-    </script>
-
 
 </body>
 

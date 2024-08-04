@@ -1,30 +1,41 @@
 <?php
 session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$type=$_POST["form_type"];
-$Div=$_POST["Div"];
-$Ref=$_POST["Ref"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+    {
+        $type=$_POST["form_type"];
+        $Div=$_POST["Div"];
+        $Ref=$_POST["Ref"];
 
-$typeWork="---";
-$Work=$_POST["Work"];
-$Date=$_POST["Date"];
-$Details=$_POST['Details'];
+        $typeWork="---";
+        $Work=$_POST["Work"];
+        $Date=$_POST["Date"];
+        $Details=$_POST['Details'];
 
-$rapport = $_FILES["rapport"];
-$rapportType = getimagesize($rapport['tmp_name']);
-$rapportData = file_get_contents($rapport["tmp_name"]);
-// if ($rapport["size"] > 500000) {
-//     echo "Sorry, your file is too large";
-// }
-$sql="INSERT INTO Intervention (UserID,Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
-       VALUES (?,?,?,?,?,?,?,?,?,?);";
-$stmt=$conn->prepare($sql);
-$stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType['mime']);
-$stmt->execute();
-$stmt->close();
-$_SESSION["success"]="Data has been successfully submitted";
-header("Location: ../index.php");
-}
+        $rapport = $_FILES["rapport"];
+        $rapportType = getimagesize($rapport['tmp_name']);
+        $rapportData = file_get_contents($rapport["tmp_name"]);
+
+        $array=['image/jpeg', 'image/png', 'application/pdf'];
+        if ($rapport["size"] > 1048576) //1mb
+            {
+                $_SESSION["failed"]="Data upload failed (your file is too large).";
+            }
+        else if(!in_array($rapportType,$array))
+            {
+                $_SESSION["failed"]="Data upload failed (only JPG, JPEG, PNG files are allowed.).";
+            }
+        else 
+            {
+                $sql="INSERT INTO Intervention (UserID,Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
+                    VALUES (?,?,?,?,?,?,?,?,?,?);";
+                $stmt=$conn->prepare($sql);
+                $stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType['mime']);
+                $stmt->execute();
+                $stmt->close();
+                $_SESSION["success"]="Data has been successfully submitted";
+            }
+        header("Location: ../index.php");
+    }
 
 ?>
 
@@ -36,7 +47,8 @@ header("Location: ../index.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support Form</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
-
+<!--============================================ CSS ==============================================================
+    ==============================================================================================================-->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -88,7 +100,8 @@ header("Location: ../index.php");
         }
     </style>
 </head>
-
+<!--============================================ HTML ==============================================================
+    ==============================================================================================================-->
 <body>
     <div id="Support">
         <div class="header text-center">
@@ -127,7 +140,7 @@ header("Location: ../index.php");
 
                 <div class="row justify-content-center mb-3">
                     <label class="pb-2">Details :</label>
-                    <div class="col-md-8"> <!-- Adjusted width here -->
+                    <div class="col-md-8"> 
                             <textarea class="form-control" name="Details" placeholder="" id="textarea"></textarea>
                     </div>
                 </div>
@@ -143,7 +156,6 @@ header("Location: ../index.php");
             </form>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
     </script>

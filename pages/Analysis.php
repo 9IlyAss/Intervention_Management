@@ -1,7 +1,7 @@
 <?php
 session_start();
+include("dbconn.php");
 
-    
     
 // nbrIntervention
         $sql = 'SELECT COUNT(*) AS nbr FROM Intervention WHERE UserID=' . $_SESSION["ID"] . ';';

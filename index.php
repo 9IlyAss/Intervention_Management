@@ -1,6 +1,4 @@
-<?php
-include("dbconn.php");
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +9,8 @@ include("dbconn.php");
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="../Img/BSRIQZ-01.png">
+
 </head>
 
 <body>
@@ -76,6 +76,7 @@ include("dbconn.php");
                 $page = preg_replace('/[^a-zA-Z0-9]/', '', $page);
                 $page = "pages/{$page}.php";
                     include($page);
+                
             ?>
             </div>
         </div>

@@ -1,40 +1,44 @@
 <?php
 session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$type=$_POST["form_type"];
-$Div=$_POST["Div"];
-$Ref=$_POST["Ref"];
 
-$typeWork=$_POST["typeWork"];
-$Work=$_POST["Work"];
-$Date=$_POST["Date"];
-$Details="---";
+include("C:/xampp/htdocs/project/Intervention_Managment/dbconn.php");
 
-$rapport = $_FILES["rapport"];
-$rapportType =$rapport["type"];
-$rapportData =file_get_contents($rapport["tmp_name"]);
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+    {
+        $type=$_POST["form_type"];
+        $Div=$_POST["Div"];
+        $Ref=$_POST["Ref"];
 
-    $array=['image/jpeg', 'image/png', 'application/pdf'];
-    if ($rapport["size"] > 500000) 
-        {
-            $_SESSION["failed"]="Data upload failed (your file is too large).";
-        }
-    else if(!in_array($rapportType,$array))
-        {
-            $_SESSION["failed"]="Data upload failed (only JPG, JPEG, PNG files are allowed.).";
-        }
-    else 
-        {
-            $sql="INSERT INTO Intervention (UserID,Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
-                VALUES (?,?,?,?,?,?,?,?,?,?);";
-            $stmt=$conn->prepare($sql);
-            $stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType);
-            $stmt->execute();
-            $stmt->close();
-            $_SESSION["success"]="Data uploaded successfully .";
+        $typeWork=$_POST["typeWork"];
+        $Work=$_POST["Work"];
+        $Date=$_POST["Date"];
+        $Details="---";
+
+        $rapport = $_FILES["rapport"];
+        $rapportType =$rapport["type"];
+        $rapportData =file_get_contents($rapport["tmp_name"]);
+
+            $array=['image/jpeg', 'image/png', 'application/pdf'];
+            if ($rapport["size"] > 1048576) //1mb
+            {
+                    $_SESSION["failed"]="Data upload failed (your file is too large).";
+                }
+                else if(!in_array($rapportType,$array))
+                {
+                    $_SESSION["failed"]="Data upload failed (only JPG, JPEG, PNG files are allowed.).";
+                }
+            else 
+                {
+                    $sql="INSERT INTO Intervention (UserID,Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
+                        VALUES (?,?,?,?,?,?,?,?,?,?);";
+                    $stmt=$conn->prepare($sql);
+                    $stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType);
+                    $stmt->execute();
+                    $stmt->close();
+                    $_SESSION["success"]="Data uploaded successfully .";
+            }
+    header("Location: ../index.php");
     }
-header("Location: ../index.php");
-}
 ?>
 
 

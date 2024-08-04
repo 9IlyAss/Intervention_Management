@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("C:/xampp/htdocs/project/Intervention_Managment/dbconn.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
     {
         $type=$_POST["form_type"];
@@ -12,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $Details=$_POST['Details'];
 
         $rapport = $_FILES["rapport"];
-        $rapportType = getimagesize($rapport['tmp_name']);
+        $rapportType = $rapport['type'];
         $rapportData = file_get_contents($rapport["tmp_name"]);
 
         $array=['image/jpeg', 'image/png', 'application/pdf'];
@@ -29,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 $sql="INSERT INTO Intervention (UserID,Type,Date,Reference,Division,Status,Detail,TypeOfWork,Rapport,RapportType)
                     VALUES (?,?,?,?,?,?,?,?,?,?);";
                 $stmt=$conn->prepare($sql);
-                $stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType['mime']);
+                $stmt->bind_param("isssssssss",$_SESSION['ID'],$type,$Date,$Ref,$Div,$Work,$Details,$typeWork,$rapportData,$rapportType);
                 $stmt->execute();
                 $stmt->close();
                 $_SESSION["success"]="Data has been successfully submitted";

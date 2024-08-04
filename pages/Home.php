@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include("dbconn.php");
 // nbrIntervention
         $sql = "SELECT COUNT(*) as nbr FROM Intervention";
         $result = $conn->query($sql);

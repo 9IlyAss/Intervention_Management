@@ -1,5 +1,4 @@
 <?php
-include("../dbconn.php");
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $type=$_POST["form_type"];

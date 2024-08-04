@@ -1,5 +1,4 @@
 <?php
-include("../dbconn.php");
 session_start();
 
 if (isset($_POST["Date"]) && !empty($_POST["Date"])) {
@@ -146,7 +145,7 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
         </div>
 
         <div class="container d-flex flex-column align-items-center">
-            <form action="pages/Analysis.php" method="post" class="w-100">
+            <form action="" method="post" class="w-100">
                 <input type="hidden" name="form_type" value="Analysis">
                 <div class="form-group mb-3">
                     <label for="dateInput">Date :</label>

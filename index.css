@@ -6,22 +6,22 @@
 body {
 
   font-family: 'Roboto', sans-serif;
-  background-color: #01041d; /* Dark background */
-  color: #dbe1fe; /* Light text */
+  background-color: #01041d; 
+  color: #dbe1fe;
 }
 
 .sidebar {
   
-  height: 100vh; /* Full height sidebar */
-  background-color: #9e0451; /* Sidebar background */
-  color: #dbe1fe; /* Text color */
-  padding-top: 15px; /* Top padding */
+  height: 100vh;
+  background-color: #9e0451; 
+  color: #dbe1fe; 
+  padding-top: 15px; 
   display: flex;
   flex-direction: column;
-  position: fixed; /* Fixes the sidebar in place */
+  position: fixed; 
     top: 0;
     left: 0;
-    overflow-y: auto; /* Allows scrolling within the sidebar if content overflows */
+    overflow-y: auto; 
     z-index: 1000;
 }
 
@@ -36,11 +36,11 @@ body {
 }
 
 .sidebar a:hover {
-  background-color: #f81f19; /* Hover background color */
+  background-color: #f81f19;
 }
 
 .content {
-  padding: 20px; /* Padding for content */
+  padding: 20px; 
   margin-left: 335px; 
 }
 
@@ -51,21 +51,22 @@ body {
 }
 
 .title {
-  font-size: 1.5rem; /* Larger title font size */
+  font-size: 1.5rem; 
   padding-left:15px;
 }
 
 
 .icon-lg {
   font-size: 1.5rem; 
-  padding-left: 10px;/* Larger icon size */
+  padding-left: 10px;
   padding-right: 5px;
 }
 
-/* Position Sign Out link at the bottom */
 .mt-auto {
   margin-top: auto;
 }
 .hovered {
   background-color: #ff0000; 
 }
+
+

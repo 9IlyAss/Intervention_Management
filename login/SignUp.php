@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "The Email Already Exists!";
             $style = "danger";
         } else {
-            $sql = "INSERT INTO User (Name, Email, Password) VALUES (?, ?, ?);";
+            $sql = "INSERT INTO User (Name, Email, Password,ResCode) VALUES (?, ?, ?);";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sss", $Name, $email, $Password);
             $stmt->execute();

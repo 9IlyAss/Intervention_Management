@@ -17,7 +17,8 @@ if (!$conn)
             UserID int AUTO_INCREMENT PRIMARY KEY,
             Name varchar(50),
             Email varchar(70),
-            Password varchar(80))";
+            Password varchar(80),
+            ResCode int )";
     $conn->query($sql);
     
     $sql = "CREATE TABLE IF NOT EXISTS Intervention (

@@ -119,16 +119,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
                 <div class="form-group mb-3">
                     <label for="refInput">Ref :</label>
-                    <input type="text" class="form-control" id="refInput" name="Ref" placeholder="">
+                    <input type="text" class="form-control" id="refInput" name="Ref" placeholder="" required>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="divSerInput">Div/Ser :</label>
-                    <input type="text" class="form-control" id="divSerInput" name="Div" placeholder="">
+                    <input type="text" class="form-control" id="divSerInput" name="Div" placeholder="" required>
                 </div>
                 <div class="form-group mb-3">
                     <label for="dateInput">Date :</label>
-                    <input type="date" class="form-control" id="dateInput" name="Date" placeholder="">
+                    <input type="date" class="form-control" id="dateInput" name="Date" placeholder="" required>
                 </div>
 
                 <div class="row justify-content-center mb-3">

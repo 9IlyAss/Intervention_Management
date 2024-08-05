@@ -118,16 +118,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
                 <div class="form-group mb-3">
                     <label for="refInput">Ref :</label>
-                    <input type="text" class="form-control" id="refInput" name="Ref" placeholder="">
+                    <input type="text" class="form-control" id="refInput" name="Ref" placeholder="" required>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="divSerInput">Div/Ser :</label>
-                    <input type="text" class="form-control" id="divSerInput" name="Div" placeholder="">
+                    <input type="text" class="form-control" id="divSerInput" name="Div" placeholder="" required>
                 </div>
                 <div class="form-group mb-3">
                     <label for="dateInput">Date :</label>
-                    <input type="date" class="form-control" id="dateInput" name="Date" placeholder="">
+                    <input type="date" class="form-control" id="dateInput" name="Date" placeholder="" required>
                 </div>
 
                 <div class="row justify-content-center mb-3">
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="rapportInput" name="rapport">
+                    <input type="file" class="form-control" id="rapportInput" name="rapport" required>
                     <label class="input-group-text" for="rapportInput">Upload the Rapport</label>
                 </div>
 

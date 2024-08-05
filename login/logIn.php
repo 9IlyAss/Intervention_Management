@@ -46,22 +46,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="logIn.css">
     <link rel="icon" href="../Img/BSRIQZ-01.png">
+    <style>
+        .imgl {
+    position: absolute;
+    width: 250px;
+    height: 200px;
+    left: 70px;
     
+}
+img {
+    width: 100%;
+    height: auto;
+}
+
+    </style>
     <title>Login</title>
 </head>
 <body>
-    
-    <div class="img ml-4">
+    <div class="pb-5">
+    <div class="imgr">
         <img src="../Img/OIP-removebg-preview.png">
+    </div>
+    <div class="imgc">
+        <img src="../Img/62f6d31b45aa26e8ff54f13d90dfd489.png">
+    </div>
+    <div class="imgl">
+        <img src="../Img/شسشس-01.png">
+    </div>
     </div>
     
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="card p-4" style="width: 22rem;">
             <div class="card-body text-center">
                 <h3 class="card-title mb-5">Login</h3>
-                <?php if (!empty($message)): ?>
+                <?php if (!empty($_SESSION['message']) ): ?>
+                    <div class="alert alert-success" role="alert">
+                        <?php echo $_SESSION['message'];
+                            unset($_SESSION['message']); ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($message) ): ?>
                     <div class="alert alert-danger" role="alert">
                         <?php echo $message; ?>
                         <?php $message= ''; ?>
@@ -75,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="password" class="form-control" placeholder="Password" name="Password" required>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
-                        <a href="ForgetPass.html" class="small">Forgotten password?</a>
+                        <a href="ForgetPass.php" class="small">Forgotten password?</a>
                     </div>
                     <button type="submit" class="btn btn-dark btn-block">Sign In</button>
                 </form>

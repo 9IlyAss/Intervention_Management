@@ -156,7 +156,7 @@ $sql = "SELECT COUNT(*) as nbr FROM Intervention WHERE UserID=" . $_SESSION["ID"
                 <input type="hidden" name="form_type" value="Analysis">
                 <div class="form-group mb-3">
                     <label for="dateInput">Date :</label>
-                    <input type="date" class="form-control" id="dateInput" name="Date" placeholder="">
+                    <input type="date" class="form-control" id="dateInput" name="Date" placeholder="" required>
                 </div>
                 <div class="d-grid gap-2 col-7 mx-auto">
                     <button type="submit" class="btn btn-danger btn-lg">Submit</button>

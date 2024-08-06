@@ -7,7 +7,7 @@ $message = '';
 $style = '';
 $currenttime=time();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(($currenttime - $_SESSION["timeout"])<18000)
+    if (($currenttime - $_SESSION["timeout"]) > 18000)
     {
         $message = "You can only request a new email every 5 hours.";
         $style = "danger";
@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="logIn.css">
+    <link rel="icon" href="../Img/image.png" sizes="32x32 64x64 128x128" type="image/png" >
     <title>Verify Your Code</title>
 </head>
 <body>
@@ -61,9 +62,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card-body text-center mb-3">
                 <h3 class="card-title mb-5">Verify Your Code</h3>
                 <form action="" method="post">
+                <?php if (isset($_SESSION["Verification"])): ?>
+                        <div class="alert alert-warning mt-3" role="alert">
+                            <?php echo $_SESSION["Verification"];
+                            unset($_SESSION["Verification"]); ?>
+                        </div>
+                    <?php endif; ?>
                     <?php if (!empty($message)): ?>
                         <div class="alert alert-<?php echo $style; ?> mt-3" role="alert">
-                            <?php echo $message; ?>
+                            <?php echo $message; 
+                            $message='';?>
                         </div>
                     <?php endif; ?>
                     <div class="form-group mb-2">

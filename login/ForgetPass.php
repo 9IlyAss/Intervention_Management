@@ -30,8 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("is", $verificationCode, $email);
         $stmt->execute();
-        $message = "Verification code sent successfully!";
-        $style = "warning";
+        $_SESSION["Verification"] = "Verification code sent successfully!";
         
 
         $sql = "SELECT Name,ResCode  FROM User WHERE Email = ?;";
@@ -65,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $mailersend->email->send($emailParams);
         $_SESSION["dbEmail"]=$email;
-        $_SESSION["timeout"]=time();
+        $_SESSION["timeout"] = time();
         header("Location: ResetPass.php");
         exit();
     }
@@ -79,6 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="logIn.css">
+    <link rel="icon" href="../Img/image.png" sizes="32x32 64x64 128x128" type="image/png" >
+
     <title>Forgot Password</title>
 </head>
 <body>

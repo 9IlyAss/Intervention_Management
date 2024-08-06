@@ -43,6 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="logIn.css">
+    <link rel="icon" href="../Img/image.png" sizes="32x32 64x64 128x128" type="image/png" >
+
     <title>Sign Up</title>
     <style>
         .imgc {

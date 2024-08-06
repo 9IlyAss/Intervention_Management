@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("is", $verificationCode, $email);
         $stmt->execute();
         $message = "Verification code sent successfully!";
-        $style = "success";
+        $style = "warning";
         
 
         $sql = "SELECT Name,ResCode  FROM User WHERE Email = ?;";
@@ -78,10 +78,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="logIn.css">
     <title>Forgot Password</title>
 </head>
 <body>
+<div class="pb-5">
+        <div class="imgr">
+            <img src="../Img/OIP-removebg-preview.png">
+        </div>
+        <div class="imgc">
+            <img src="../Img/62f6d31b45aa26e8ff54f13d90dfd489.png">
+        </div>
+        <div class="imgl">
+            <img src="../Img/شسشس-01.png">
+        </div>
+    </div>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="card p-4" style="width: 22rem;">
             <div class="card-body text-center mb-3">

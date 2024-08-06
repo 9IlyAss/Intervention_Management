@@ -49,34 +49,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="logIn.css">
     <link rel="icon" href="../Img/BSRIQZ-01.png">
     <style>
-        .imgl {
-    position: absolute;
-    width: 250px;
-    height: 200px;
-    left: 70px;
-    
-}
-img {
-    width: 100%;
-    height: auto;
-}
-
+        
     </style>
     <title>Login</title>
 </head>
 <body>
     <div class="pb-5">
-    <div class="imgr">
-        <img src="../Img/OIP-removebg-preview.png">
+        <div class="imgr">
+            <img src="../Img/OIP-removebg-preview.png">
+        </div>
+        <div class="imgc">
+            <img src="../Img/62f6d31b45aa26e8ff54f13d90dfd489.png">
+        </div>
+        <div class="imgl">
+            <img src="../Img/شسشس-01.png">
+        </div>
     </div>
-    <div class="imgc">
-        <img src="../Img/62f6d31b45aa26e8ff54f13d90dfd489.png">
-    </div>
-    <div class="imgl">
-        <img src="../Img/شسشس-01.png">
-    </div>
-    </div>
-    
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="card p-4" style="width: 22rem;">
             <div class="card-body text-center">

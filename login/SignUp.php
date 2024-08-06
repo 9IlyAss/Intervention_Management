@@ -24,12 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "The Email Already Exists!";
             $style = "danger";
         } else {
-            $sql = "INSERT INTO User (Name, Email, Password,ResCode) VALUES (?, ?, ?);";
+            $sql = "INSERT INTO User (Name, Email, Password,ResCode) VALUES (?, ?, ?, 99999);";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sss", $Name, $email, $Password);
             $stmt->execute();
             $message = "You have successfully signed up! <a href='login.php' class='alert-link'>Click here to log in</a>";
-            $style = "success";
+            $style = "warning";
         }
         $stmt->close();
     }
@@ -42,15 +42,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="logIn.css">
     <title>Sign Up</title>
+    <style>
+        .imgc {
+            width: 100px;
+            height: auto;
+            right: 46%;
+        }
+        .c{
+            padding-bottom:63px;
+        }
+    </style>
 </head>
 <body>
     
-    <div class="img ml-4">
-        <img src="../Img/OIP-removebg-preview.png" alt="Logo">
+<div class="c">
+        <div class="imgr">
+            <img src="../Img/OIP-removebg-preview.png">
+        </div>
+        <div class="imgc">
+            <img src="../Img/62f6d31b45aa26e8ff54f13d90dfd489.png">
+        </div>
+        <div class="imgl">
+            <img src="../Img/شسشس-01.png">
+        </div>
     </div>
-    
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="card p-4" style="width: 22rem;">
             <div class="card-body text-center">
